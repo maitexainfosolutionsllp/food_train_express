@@ -42,12 +42,12 @@ class _LoginScreenState extends State<LoginScreen>
       {
         route.pushToStart(context, "/main");
 
-        // int userRole = int.tryParse(json.encode(body['role']));
-        //
-        // SharedPreferences localStorage = await SharedPreferences.getInstance();
-        // localStorage.setString('role', json.encode(body['role']).toString());
-        // localStorage.setString(
-        //     'login_id', json.encode(body['login_id']).toString());
+        int userRole = int.tryParse(json.encode(body['userRole']));
+
+        SharedPreferences localStorage = await SharedPreferences.getInstance();
+        localStorage.setString('userRole', userRole.toString());
+        localStorage.setString(
+            'loginId', json.encode(body['loginId']).toString());
       }
       else
         {
@@ -140,40 +140,40 @@ class _LoginScreenState extends State<LoginScreen>
                           style: theme.text16boldWhite
                       ),
                     )),
-                InkWell(
-                    onTap: ()
-                    {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => DeliveryCreateAccountScreen()),
-                      );
-                    },
-                    child: Container(
-                        padding:EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 20),
-                        child: Text("Delivery Boy",                    // ""Don't have an account? Create",",
-                            overflow: TextOverflow.clip,
-                            textAlign: TextAlign.center,
-                            style: theme.text16boldWhite
-                        )
-                    )
-                ),
-                InkWell(
-                    onTap: ()
-                    {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ShopCreateAccountScreen()),
-                      );
-                    },
-                    child: Container(
-                        padding:EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 20),
-                        child: Text("Shop Owner",                    // ""Don't have an account? Create",",
-                            overflow: TextOverflow.clip,
-                            textAlign: TextAlign.center,
-                            style: theme.text16boldWhite
-                        )
-                    )
-                ),
+                // InkWell(
+                //     onTap: ()
+                //     {
+                //       Navigator.push(
+                //         context,
+                //         MaterialPageRoute(builder: (context) => DeliveryCreateAccountScreen()),
+                //       );
+                //     },
+                //     child: Container(
+                //         padding:EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 20),
+                //         child: Text("Delivery Boy",                    // ""Don't have an account? Create",",
+                //             overflow: TextOverflow.clip,
+                //             textAlign: TextAlign.center,
+                //             style: theme.text16boldWhite
+                //         )
+                //     )
+                // ),
+                // InkWell(
+                //     onTap: ()
+                //     {
+                //       Navigator.push(
+                //         context,
+                //         MaterialPageRoute(builder: (context) => ShopCreateAccountScreen()),
+                //       );
+                //     },
+                //     child: Container(
+                //         padding:EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 20),
+                //         child: Text("Shop Owner",                    // ""Don't have an account? Create",",
+                //             overflow: TextOverflow.clip,
+                //             textAlign: TextAlign.center,
+                //             style: theme.text16boldWhite
+                //         )
+                //     )
+                // ),
 
               ],
             ),

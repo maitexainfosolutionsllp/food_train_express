@@ -117,20 +117,8 @@ class Menu extends StatelessWidget {
               // _item(7, strings.get(51), "assets/help.png"), // Help & Support
               _item(8, strings.get(37), "assets/settings.png"), // "Account",
               // _item(9, strings.get(62), "assets/language.png"), // Languages
-              IList5(icon:  UnconstrainedBox(
-                  child: Container(
-                      height: 25,
-                      width: 25,
-                      child: Image.asset("assets/notifyicon.png",
-                          fit: BoxFit.contain, color: theme.colorPrimary,
-                      )
-                  )),
-                text : strings.get(35),                                   // Notifications
-                textStyle: theme.text16bold,
-                activeColor: theme.colorPrimary,
-                inactiveTrackColor: theme.colorGrey,
-                press: _changeNotify,
-              ),
+              if (account.isAuth())
+                _item(9, "Logout", "assets/signout.png"),
               // _item(11, strings.get(68), "assets/help.png"),      // Term of service
               // ILine(),
               // _darkMode(),

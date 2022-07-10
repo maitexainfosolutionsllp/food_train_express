@@ -179,9 +179,9 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
 
     list.add(_horizontalImages());                                                                    // dish images
 
-    list.add(SizedBox(height: 20,));
-
-    _extras(list);                                                                                    // Extras
+    // list.add(SizedBox(height: 20,));
+    //
+    // _extras(list);                                                                                    // Extras
 
     list.add(SizedBox(height: 20,));
 
@@ -451,33 +451,33 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
       )));
   }
 
-  _extras(List<Widget> list) {
-    list.add(Container(
-      margin: EdgeInsets.only(left: 20, right: 20),
-      child: IList1(imageAsset: "assets/add.png",
-        text: strings.get(89),                // Extras
-        textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
-    ));
-    list.add(SizedBox(height: 20,));
-    list.add(IList6(initState: false, leading: CircleAvatar(backgroundImage: AssetImage("assets/b1.jpg"), radius: 20,),
-      title: "4 CHEESO RINGS", titleStyle: theme.text18bold,
-      subtitle: "Rings of cheese & onion in a crisp crumb",
-      text: "\$1.76", textStyle: theme.text18boldPrimary,
-      id: "extras1", callback: _extrasClick,
-    ));
-    list.add(IList6(initState: true, leading: CircleAvatar(backgroundImage: AssetImage("assets/b2.jpg"), radius: 20,),
-      title: "POTATO CHIPS", titleStyle: theme.text18bold,
-      subtitle: "A portion of tasty sweet potato chips",
-      text: "\$0.28", textStyle: theme.text18boldPrimary,
-      id: "extras2", callback: _extrasClick,
-    ));
-    list.add(IList6(initState: false, leading: CircleAvatar(backgroundImage: AssetImage("assets/b3.jpg"), radius: 20,),
-      title: "DIPPING SAUCES", titleStyle: theme.text18bold,
-      subtitle: "Wimpy Ketchup, Wimpy Mayo, BBQ or Firecracker",
-      text: "\$1.02", textStyle: theme.text18boldPrimary,
-      id: "extras3", callback: _extrasClick,
-    ));
-  }
+  // _extras(List<Widget> list) {
+  //   list.add(Container(
+  //     margin: EdgeInsets.only(left: 20, right: 20),
+  //     child: IList1(imageAsset: "assets/add.png",
+  //       text: strings.get(89),                // Extras
+  //       textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+  //   ));
+  //   list.add(SizedBox(height: 20,));
+  //   list.add(IList6(initState: false, leading: CircleAvatar(backgroundImage: AssetImage("assets/b1.jpg"), radius: 20,),
+  //     title: "4 CHEESO RINGS", titleStyle: theme.text18bold,
+  //     subtitle: "Rings of cheese & onion in a crisp crumb",
+  //     text: "\$1.76", textStyle: theme.text18boldPrimary,
+  //     id: "extras1", callback: _extrasClick,
+  //   ));
+  //   list.add(IList6(initState: true, leading: CircleAvatar(backgroundImage: AssetImage("assets/b2.jpg"), radius: 20,),
+  //     title: "POTATO CHIPS", titleStyle: theme.text18bold,
+  //     subtitle: "A portion of tasty sweet potato chips",
+  //     text: "\$0.28", textStyle: theme.text18boldPrimary,
+  //     id: "extras2", callback: _extrasClick,
+  //   ));
+  //   list.add(IList6(initState: false, leading: CircleAvatar(backgroundImage: AssetImage("assets/b3.jpg"), radius: 20,),
+  //     title: "DIPPING SAUCES", titleStyle: theme.text18bold,
+  //     subtitle: "Wimpy Ketchup, Wimpy Mayo, BBQ or Firecracker",
+  //     text: "\$1.02", textStyle: theme.text18boldPrimary,
+  //     id: "extras3", callback: _extrasClick,
+  //   ));
+  // }
 
 
   _button(){

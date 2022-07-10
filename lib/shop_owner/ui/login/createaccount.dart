@@ -19,11 +19,14 @@ class _ShopCreateAccountScreenState extends State<ShopCreateAccountScreen>
   //
   //
   //
-  _pressCreateAccountButton(){
-    print("User pressed \"CREATE ACCOUNT\" button");
-    print("Login: ${editControllerName.text}, E-mail: ${editControllerEmail.text}, "
-        "password1: ${editControllerPassword1.text}, password2: ${editControllerPassword2.text}");
-    Navigator.pushNamedAndRemoveUntil(context, "/main", (r) => false);
+  _pressCreateAccountButton() async
+  {
+    // print("User pressed \"CREATE ACCOUNT\" button");
+    // print("Login: ${editControllerName.text}, E-mail: ${editControllerEmail.text}, "
+    //     "password1: ${editControllerPassword1.text}, password2: ${editControllerPassword2.text}");
+
+
+    Navigator.pushNamedAndRemoveUntil(context, "/shop_main", (r) => false);
   }
 
   //
@@ -132,7 +135,7 @@ class _ShopCreateAccountScreenState extends State<ShopCreateAccountScreen>
                 Container(
                     margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: IInputField2(
-                      hint: "Staton Name",            // "Password"
+                      hint: "Station Name",            // "Password"
                       icon: Icons.directions_railway_sharp,
                       colorDefaultText: theme.colorPrimary,
                       colorBackground: theme.colorBackgroundDialog,

@@ -15,7 +15,7 @@ class ICard11 extends StatefulWidget {
   final TextStyle body;
   final Function(String id, String hero) callback;
 
-  ICard11({this.color = Colors.white, this.width = 100, this.height = 100,
+  ICard11({this.color = Colors.white, this.width = 100, this.height = 150,
     this.text = "", this.text2 = "", this.image = "", this.textInLabel = "", this.colorLabel = Colors.black,
     this.id = "", this.title, this.body, this.callback,
   });

@@ -213,7 +213,7 @@ class _MapScreenState extends State<MapScreen> {
         title: theme.text18boldPrimary,
         body: theme.text16,
         callback: _onTopRestaurantClick,
-        callbackNavigateIcon: _onTopRestaurantNavigateIconClick,
+
       ));
       list.add(SizedBox(width: 10,));
     }

@@ -15,11 +15,10 @@ class ICard10 extends StatefulWidget {
   final TextStyle title;
   final TextStyle body;
   final Function(String id, String hero) callback;
-  final Function(String id) callbackNavigateIcon;
 
   ICard10({this.color = Colors.white, this.width = 100, this.height = 100,
     this.text = "", this.text2 = "", this.image = "", this.stars = 0, this.colorStars = Colors.black,
-    this.id = "", this.starsCount = 0, this.title, this.body, this.callback, this.callbackNavigateIcon,
+    this.id = "", this.starsCount = 0, this.title, this.body, this.callback,
   });
 
   @override
@@ -128,13 +127,7 @@ class _ICard10State extends State<ICard10>{
               color: Colors.transparent,
               shape: CircleBorder(),
               clipBehavior: Clip.hardEdge,
-              child: InkWell(
-                splashColor: Colors.grey[400],
-                onTap: (){
-                  if (widget.callbackNavigateIcon != null)
-                    widget.callbackNavigateIcon(widget.id);
-                }, // needed
-              )),
+               ),
         )
       ],
     );

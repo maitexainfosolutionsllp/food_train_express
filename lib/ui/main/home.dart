@@ -4,8 +4,11 @@ import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/model/categories.dart';
 import 'package:fooddelivery/model/mostpopular.dart';
 import 'package:fooddelivery/model/review.dart';
+import 'package:fooddelivery/model/shop.dart';
 import 'package:fooddelivery/model/topRestourants.dart';
 import 'package:fooddelivery/model/trending.dart';
+import 'package:fooddelivery/service/shopService.dart';
+import 'package:fooddelivery/widget/column_builder.dart';
 import 'package:fooddelivery/widget/icard1.dart';
 import 'package:fooddelivery/widget/icard10.dart';
 import 'package:fooddelivery/widget/icard11.dart';
@@ -34,7 +37,8 @@ String idOrder;
 
 class _HomeScreenState extends State<HomeScreen> {
 
-
+  ShopService _shopservice = new ShopService();
+  Map<String, dynamic> _shopListMap;
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   //
@@ -94,14 +98,192 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     windowWidth = MediaQuery.of(context).size.width;
     windowHeight = MediaQuery.of(context).size.height;
-    return Container(
+    var height = windowWidth*0.5*0.8;
+
+    return Column(children: <Widget>[
+      Expanded(child:
+    Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+50),
-        child: ListView(
-          padding: EdgeInsets.only(top: 0),
-          shrinkWrap: true,
-          children: _children()
-        )
-    );
+    child: ListView(
+    padding: EdgeInsets.only(top: 0),
+    shrinkWrap: true,
+    children: <Widget>[
+
+    Container(
+    margin: EdgeInsets.only(left: 15, right: 15, top: 10),
+    child: ISearch(
+    hint: strings.get(34), // "Search",
+    icon: Icons.search,
+    onChangeText: _onPressSearch,
+    colorDefaultText: theme.colorDefaultText,
+    colorBackground: theme.colorBackground,
+    ),
+    ),
+    IPromotion(dataPromotion, height: windowWidth*0.5, width: windowWidth*0.9, colorActivy: theme.colorPrimary,
+    style: theme.text22primaryShadow, buttonText: strings.get(97), buttonTextStyle: theme.text14boldWhite, pressButton: _pressPromotion, // Explore
+    seconds: 4,),
+    Container(
+    margin: EdgeInsets.only(left: 20),
+    child: IList1(imageAsset: "assets/top.png", text: "Station Shops",    // "Top Restaurants",
+    textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+    ),
+    Container(height: height+20,
+    child: ListView(
+      scrollDirection: Axis.horizontal,
+        children: [ shopList(), ]
+    ),
+    ),
+
+
+
+    // Container(
+    // height: height+30,
+    // child: FutureBuilder<List<ShopModel>>(
+    // future:_shopservice.getShops(),
+    // builder: (context, snapshot)
+    // {
+    // if(snapshot.hasData)
+    // {
+    //   return ColumnBuilder(
+    //       itemCount: snapshot.data.length,
+    //       itemBuilder: (context, index)
+    //       {
+    //         return ListView(
+    //           scrollDirection: Axis.horizontal,
+    //           children: <Widget>[
+    //             ICard10(
+    //               color: theme.colorBackground,
+    //               text: "Item",
+    //               text2: "item.text2",
+    //               width: windowWidth * 0.6,
+    //               height: height,
+    //               image: "assets/top1.jpg",
+    //               stars: 4,
+    //               colorStars: theme.colorPrimary,
+    //               id: "1",
+    //               starsCount: 3,
+    //               title: theme.text18boldPrimary,
+    //               body: theme.text16,
+    //               callback: _onTopRestaurantClick,
+    //             ),
+    //           ],
+    //         );
+    //       }
+    //       );
+    // }
+    // else
+    // {
+    //   return CircularProgressIndicator();
+    // }
+    // }
+    //
+    // ),
+    //
+    //
+    //
+    // ),
+    SizedBox(height: 20),
+    Container(
+    margin: EdgeInsets.only(left: 20),
+    child: IList1(imageAsset: "assets/trending.png", text: strings.get(40),     // "Trending this week",
+    textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+    ),
+    Container(
+    height: height+30,
+    child: ListView(
+    scrollDirection: Axis.horizontal,
+    children: <Widget>[
+
+    ICard11(
+    color: theme.colorBackground,
+    text: "item.text",
+    text2: "item.restaurant",
+    textInLabel: "\₹25",
+    width: windowWidth * 0.4,
+    height: height,
+    image: "assets/b1.jpg",
+    colorLabel: theme.colorCompanion4,
+    id: "2",
+    title: theme.text16bold,
+    body: theme.text14,
+    callback: _onTrendingClick,
+    ),
+    ICard11(
+    color: theme.colorBackground,
+    text: "item.text",
+    text2: "item.restaurant",
+    textInLabel: "\₹25",
+    width: windowWidth * 0.4,
+    height: height,
+    image: "assets/b1.jpg",
+    colorLabel: theme.colorCompanion4,
+    id: "1",
+    title: theme.text16bold,
+    body: theme.text14,
+    callback: _onTrendingClick,
+    ),
+    ICard11(
+    color: theme.colorBackground,
+    text: "item.text",
+    text2: "item.restaurant",
+    textInLabel: "\₹25",
+    width: windowWidth * 0.4,
+    height: height,
+    image: "assets/b1.jpg",
+    colorLabel: theme.colorCompanion4,
+    id: "1",
+    title: theme.text16bold,
+    body: theme.text14,
+    callback: _onTrendingClick,
+    )
+
+    ],
+    ),
+    ),
+    SizedBox(height: 20),
+    Container(
+    margin: EdgeInsets.only(left: 20),
+    child: IList1(imageAsset: "assets/categories.png", text: strings.get(41),   // "Food categories",
+    textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+    ),
+    Container(
+    height: height+20,
+    child: ListView(
+    scrollDirection: Axis.horizontal,
+    children: <Widget>[
+
+    ICard11(
+    color: theme.colorBackground,
+    text: "Pasta",
+    text2: "25544",
+    textInLabel: "\$20",
+    width: windowWidth * 0.4,
+    height: height,
+    image: "assets/c1.jpg",
+    colorLabel: theme.colorCompanion4,
+    id: "2",
+    title: theme.text16bold,
+    body: theme.text14,
+    callback: _onTrendingClick,
+    )
+
+
+    ],
+    ),
+    ),
+      SizedBox(height: 80,),
+      Container(
+        margin: EdgeInsets.only(left: 20),
+        child: IList1(imageAsset: "assets/popular.png", text: "Train Foods",        // "Most Popular",
+            textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+      )
+
+
+    ],
+    //children: _children()
+    )
+    ))
+    ],);
   }
 
   _children(){
@@ -304,36 +486,75 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  _horizontalTopRestaurants(){
-    var list = List<Widget>();
-    var height = windowWidth*0.6*0.7;
-    for (var item in topRestourant) {
-      list.add(ICard10(
-        color: theme.colorBackground,
-        text: item.text,
-        text2: item.text2,
-        width: windowWidth * 0.6,
-        height: height,
-        image: item.image,
-        stars: item.stars,
-        colorStars: theme.colorPrimary,
-        id: item.id,
-        starsCount: item.starsCount,
-        title: theme.text18boldPrimary,
-        body: theme.text16,
-        callback: _onTopRestaurantClick,
-        callbackNavigateIcon: _onTopRestaurantNavigateIconClick,
-      ));
-      list.add(SizedBox(width: 10,));
-    }
-    return Container(
-      height: height+20,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: list,
-      ),
-    );
-  }
+  _horizontalTopRestaurants() {
 
+
+      var list = List<Widget>();
+      var height = windowWidth*0.6*0.7;
+      for (var item in topRestourant)
+      {
+        list.add(ICard10(
+          color: theme.colorBackground,
+          text: item.text,
+          text2: item.text2,
+          width: windowWidth * 0.6,
+          height: height,
+          image: item.image,
+          stars: item.stars,
+          colorStars: theme.colorPrimary,
+          id: item.id,
+          starsCount: item.starsCount,
+          title: theme.text18boldPrimary,
+          body: theme.text16,
+          callback: _onTopRestaurantClick,
+
+        ));
+        list.add(SizedBox(width: 10,));
+      }
+      return Container(
+        height: height+20,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: list,
+        ),
+      );
+    }
+
+  shopList()
+  {
+    return FutureBuilder<List<ShopModel>>(
+        future:_shopservice.getShops(),
+        builder: (context, snapshot)
+        {
+          if(snapshot.hasData)
+          {
+            return ColumnBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
+            {
+              return ICard10(
+                                color: theme.colorBackground,
+                                text: snapshot.data[index].shop_name,
+                                text2: snapshot.data[index].station_name,
+                                width: windowWidth * 0.6,
+                                height: 150,
+                                image: "assets/top1.jpg",
+                                stars: 4,
+                                colorStars: theme.colorPrimary,
+                                id: snapshot.data[index].id,
+                                starsCount: 3,
+                                title: theme.text18boldPrimary,
+                                body: theme.text16,
+                                callback: _onTopRestaurantClick,
+                              );
+
+            });
+
+          }
+          else
+          {
+            return CircularProgressIndicator();
+          }
+        }
+        );
+  }
 
 }
