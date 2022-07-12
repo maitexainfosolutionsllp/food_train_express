@@ -1,0 +1,347 @@
+io/flutter/plugins/sharedpreferences/R.java
+ io.flutter.plugins.sharedpreferences.R
+ io.flutter.plugins.sharedpreferences.R$attr
+ io.flutter.plugins.sharedpreferences.R$color
+ io.flutter.plugins.sharedpreferences.R$dimen
+ io.flutter.plugins.sharedpreferences.R$drawable
+ io.flutter.plugins.sharedpreferences.R$id
+ io.flutter.plugins.sharedpreferences.R$integer
+ io.flutter.plugins.sharedpreferences.R$layout
+ io.flutter.plugins.sharedpreferences.R$string
+ io.flutter.plugins.sharedpreferences.R$style
+ io.flutter.plugins.sharedpreferences.R$styleable
+com/google/android/exoplayer2/source/smoothstreaming/R.java
+ com.google.android.exoplayer2.source.smoothstreaming.R
+androidx/lifecycle/livedata/core/R.java
+ androidx.lifecycle.livedata.core.R
+com/baseflow/permissionhandler/R.java
+ com.baseflow.permissionhandler.R
+ com.baseflow.permissionhandler.R$attr
+ com.baseflow.permissionhandler.R$color
+ com.baseflow.permissionhandler.R$dimen
+ com.baseflow.permissionhandler.R$drawable
+ com.baseflow.permissionhandler.R$id
+ com.baseflow.permissionhandler.R$integer
+ com.baseflow.permissionhandler.R$layout
+ com.baseflow.permissionhandler.R$string
+ com.baseflow.permissionhandler.R$style
+ com.baseflow.permissionhandler.R$styleable
+androidx/arch/core/R.java
+ androidx.arch.core.R
+androidx/fragment/R.java
+ androidx.fragment.R
+ androidx.fragment.R$attr
+ androidx.fragment.R$color
+ androidx.fragment.R$dimen
+ androidx.fragment.R$drawable
+ androidx.fragment.R$id
+ androidx.fragment.R$integer
+ androidx.fragment.R$layout
+ androidx.fragment.R$string
+ androidx.fragment.R$style
+ androidx.fragment.R$styleable
+io/flutter/plugins/googlemaps/R.java
+ io.flutter.plugins.googlemaps.R
+ io.flutter.plugins.googlemaps.R$attr
+ io.flutter.plugins.googlemaps.R$color
+ io.flutter.plugins.googlemaps.R$dimen
+ io.flutter.plugins.googlemaps.R$drawable
+ io.flutter.plugins.googlemaps.R$id
+ io.flutter.plugins.googlemaps.R$integer
+ io.flutter.plugins.googlemaps.R$layout
+ io.flutter.plugins.googlemaps.R$string
+ io.flutter.plugins.googlemaps.R$style
+ io.flutter.plugins.googlemaps.R$styleable
+androidx/savedstate/R.java
+ androidx.savedstate.R
+com/google/android/gms/places_placereport/R.java
+ com.google.android.gms.places_placereport.R
+com/google/android/gms/maps/R.java
+ com.google.android.gms.maps.R
+ com.google.android.gms.maps.R$attr
+ com.google.android.gms.maps.R$id
+ com.google.android.gms.maps.R$styleable
+androidx/core/R.java
+ androidx.core.R
+ androidx.core.R$attr
+ androidx.core.R$color
+ androidx.core.R$dimen
+ androidx.core.R$drawable
+ androidx.core.R$id
+ androidx.core.R$integer
+ androidx.core.R$layout
+ androidx.core.R$string
+ androidx.core.R$style
+ androidx.core.R$styleable
+com/fooddelivery/BuildConfig.java
+ com.fooddelivery.BuildConfig
+com/google/android/gms/common/R.java
+ com.google.android.gms.common.R
+ com.google.android.gms.common.R$integer
+ com.google.android.gms.common.R$string
+io/flutter/plugins/urllauncher/R.java
+ io.flutter.plugins.urllauncher.R
+ io.flutter.plugins.urllauncher.R$attr
+ io.flutter.plugins.urllauncher.R$color
+ io.flutter.plugins.urllauncher.R$dimen
+ io.flutter.plugins.urllauncher.R$drawable
+ io.flutter.plugins.urllauncher.R$id
+ io.flutter.plugins.urllauncher.R$integer
+ io.flutter.plugins.urllauncher.R$layout
+ io.flutter.plugins.urllauncher.R$string
+ io.flutter.plugins.urllauncher.R$style
+ io.flutter.plugins.urllauncher.R$styleable
+androidx/activity/R.java
+ androidx.activity.R
+ androidx.activity.R$attr
+ androidx.activity.R$color
+ androidx.activity.R$dimen
+ androidx.activity.R$drawable
+ androidx.activity.R$id
+ androidx.activity.R$integer
+ androidx.activity.R$layout
+ androidx.activity.R$string
+ androidx.activity.R$style
+ androidx.activity.R$styleable
+com/google/android/exoplayer2/source/dash/R.java
+ com.google.android.exoplayer2.source.dash.R
+io/flutter/plugins/videoplayer/R.java
+ io.flutter.plugins.videoplayer.R
+ io.flutter.plugins.videoplayer.R$attr
+ io.flutter.plugins.videoplayer.R$color
+ io.flutter.plugins.videoplayer.R$dimen
+ io.flutter.plugins.videoplayer.R$drawable
+ io.flutter.plugins.videoplayer.R$id
+ io.flutter.plugins.videoplayer.R$integer
+ io.flutter.plugins.videoplayer.R$layout
+ io.flutter.plugins.videoplayer.R$string
+ io.flutter.plugins.videoplayer.R$style
+ io.flutter.plugins.videoplayer.R$styleable
+com/baseflow/location_permissions/R.java
+ com.baseflow.location_permissions.R
+ com.baseflow.location_permissions.R$attr
+ com.baseflow.location_permissions.R$color
+ com.baseflow.location_permissions.R$dimen
+ com.baseflow.location_permissions.R$drawable
+ com.baseflow.location_permissions.R$id
+ com.baseflow.location_permissions.R$integer
+ com.baseflow.location_permissions.R$layout
+ com.baseflow.location_permissions.R$string
+ com.baseflow.location_permissions.R$style
+ com.baseflow.location_permissions.R$styleable
+com/google/android/gms/base/R.java
+ com.google.android.gms.base.R
+ com.google.android.gms.base.R$attr
+ com.google.android.gms.base.R$color
+ com.google.android.gms.base.R$drawable
+ com.google.android.gms.base.R$id
+ com.google.android.gms.base.R$string
+ com.google.android.gms.base.R$styleable
+androidx/versionedparcelable/R.java
+ androidx.versionedparcelable.R
+androidx/multidex/R.java
+ androidx.multidex.R
+io/flutter/plugins/webviewflutter/R.java
+ io.flutter.plugins.webviewflutter.R
+ io.flutter.plugins.webviewflutter.R$attr
+ io.flutter.plugins.webviewflutter.R$color
+ io.flutter.plugins.webviewflutter.R$dimen
+ io.flutter.plugins.webviewflutter.R$drawable
+ io.flutter.plugins.webviewflutter.R$id
+ io.flutter.plugins.webviewflutter.R$integer
+ io.flutter.plugins.webviewflutter.R$layout
+ io.flutter.plugins.webviewflutter.R$string
+ io.flutter.plugins.webviewflutter.R$style
+ io.flutter.plugins.webviewflutter.R$styleable
+androidx/lifecycle/viewmodel/R.java
+ androidx.lifecycle.viewmodel.R
+io/flutter/plugins/pathprovider/R.java
+ io.flutter.plugins.pathprovider.R
+ io.flutter.plugins.pathprovider.R$attr
+ io.flutter.plugins.pathprovider.R$color
+ io.flutter.plugins.pathprovider.R$dimen
+ io.flutter.plugins.pathprovider.R$drawable
+ io.flutter.plugins.pathprovider.R$id
+ io.flutter.plugins.pathprovider.R$integer
+ io.flutter.plugins.pathprovider.R$layout
+ io.flutter.plugins.pathprovider.R$string
+ io.flutter.plugins.pathprovider.R$style
+ io.flutter.plugins.pathprovider.R$styleable
+com/google/android/exoplayer2/extractor/R.java
+ com.google.android.exoplayer2.extractor.R
+com/google/android/exoplayer2/core/R.java
+ com.google.android.exoplayer2.core.R
+androidx/lifecycle/livedata/R.java
+ androidx.lifecycle.livedata.R
+androidx/lifecycle/R.java
+ androidx.lifecycle.R
+androidx/customview/R.java
+ androidx.customview.R
+ androidx.customview.R$attr
+ androidx.customview.R$color
+ androidx.customview.R$dimen
+ androidx.customview.R$drawable
+ androidx.customview.R$id
+ androidx.customview.R$integer
+ androidx.customview.R$layout
+ androidx.customview.R$string
+ androidx.customview.R$style
+ androidx.customview.R$styleable
+androidx/window/java/R.java
+ androidx.window.java.R
+com/fooddelivery/R.java
+ com.fooddelivery.R
+ com.fooddelivery.R$attr
+ com.fooddelivery.R$color
+ com.fooddelivery.R$dimen
+ com.fooddelivery.R$drawable
+ com.fooddelivery.R$id
+ com.fooddelivery.R$integer
+ com.fooddelivery.R$layout
+ com.fooddelivery.R$mipmap
+ com.fooddelivery.R$string
+ com.fooddelivery.R$style
+ com.fooddelivery.R$styleable
+ com.fooddelivery.R$xml
+io/github/ponnamkarthik/toast/fluttertoast/R.java
+ io.github.ponnamkarthik.toast.fluttertoast.R
+ io.github.ponnamkarthik.toast.fluttertoast.R$attr
+ io.github.ponnamkarthik.toast.fluttertoast.R$color
+ io.github.ponnamkarthik.toast.fluttertoast.R$dimen
+ io.github.ponnamkarthik.toast.fluttertoast.R$drawable
+ io.github.ponnamkarthik.toast.fluttertoast.R$id
+ io.github.ponnamkarthik.toast.fluttertoast.R$integer
+ io.github.ponnamkarthik.toast.fluttertoast.R$layout
+ io.github.ponnamkarthik.toast.fluttertoast.R$string
+ io.github.ponnamkarthik.toast.fluttertoast.R$style
+ io.github.ponnamkarthik.toast.fluttertoast.R$styleable
+com/baseflow/geolocator/R.java
+ com.baseflow.geolocator.R
+ com.baseflow.geolocator.R$attr
+ com.baseflow.geolocator.R$color
+ com.baseflow.geolocator.R$dimen
+ com.baseflow.geolocator.R$drawable
+ com.baseflow.geolocator.R$id
+ com.baseflow.geolocator.R$integer
+ com.baseflow.geolocator.R$layout
+ com.baseflow.geolocator.R$string
+ com.baseflow.geolocator.R$style
+ com.baseflow.geolocator.R$styleable
+androidx/exifinterface/R.java
+ androidx.exifinterface.R
+androidx/loader/R.java
+ androidx.loader.R
+ androidx.loader.R$attr
+ androidx.loader.R$color
+ androidx.loader.R$dimen
+ androidx.loader.R$drawable
+ androidx.loader.R$id
+ androidx.loader.R$integer
+ androidx.loader.R$layout
+ androidx.loader.R$string
+ androidx.loader.R$style
+ androidx.loader.R$styleable
+androidx/annotation/experimental/R.java
+ androidx.annotation.experimental.R
+com/google/android/exoplayer2/source/hls/R.java
+ com.google.android.exoplayer2.source.hls.R
+io/flutter/plugins/flutter_plugin_android_lifecycle/R.java
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$attr
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$color
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$dimen
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$drawable
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$id
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$integer
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$layout
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$string
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$style
+ io.flutter.plugins.flutter_plugin_android_lifecycle.R$styleable
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+androidx/tracing/R.java
+ androidx.tracing.R
+androidx/window/R.java
+ androidx.window.R
+ androidx.window.R$attr
+ androidx.window.R$id
+ androidx.window.R$styleable
+com/baseflow/googleapiavailability/R.java
+ com.baseflow.googleapiavailability.R
+ com.baseflow.googleapiavailability.R$attr
+ com.baseflow.googleapiavailability.R$color
+ com.baseflow.googleapiavailability.R$dimen
+ com.baseflow.googleapiavailability.R$drawable
+ com.baseflow.googleapiavailability.R$id
+ com.baseflow.googleapiavailability.R$integer
+ com.baseflow.googleapiavailability.R$layout
+ com.baseflow.googleapiavailability.R$string
+ com.baseflow.googleapiavailability.R$style
+ com.baseflow.googleapiavailability.R$styleable
+io/flutter/plugins/imagepicker/R.java
+ io.flutter.plugins.imagepicker.R
+ io.flutter.plugins.imagepicker.R$attr
+ io.flutter.plugins.imagepicker.R$color
+ io.flutter.plugins.imagepicker.R$dimen
+ io.flutter.plugins.imagepicker.R$drawable
+ io.flutter.plugins.imagepicker.R$id
+ io.flutter.plugins.imagepicker.R$integer
+ io.flutter.plugins.imagepicker.R$layout
+ io.flutter.plugins.imagepicker.R$string
+ io.flutter.plugins.imagepicker.R$style
+ io.flutter.plugins.imagepicker.R$styleable
+ io.flutter.plugins.imagepicker.R$xml
+androidx/viewpager/R.java
+ androidx.viewpager.R
+ androidx.viewpager.R$attr
+ androidx.viewpager.R$color
+ androidx.viewpager.R$dimen
+ androidx.viewpager.R$drawable
+ androidx.viewpager.R$id
+ androidx.viewpager.R$integer
+ androidx.viewpager.R$layout
+ androidx.viewpager.R$string
+ androidx.viewpager.R$style
+ androidx.viewpager.R$styleable
+creativemaybeno/wakelock/R.java
+ creativemaybeno.wakelock.R
+ creativemaybeno.wakelock.R$attr
+ creativemaybeno.wakelock.R$color
+ creativemaybeno.wakelock.R$dimen
+ creativemaybeno.wakelock.R$drawable
+ creativemaybeno.wakelock.R$id
+ creativemaybeno.wakelock.R$integer
+ creativemaybeno.wakelock.R$layout
+ creativemaybeno.wakelock.R$string
+ creativemaybeno.wakelock.R$style
+ creativemaybeno.wakelock.R$styleable
+com/google/android/gms/location/R.java
+ com.google.android.gms.location.R
+com/google/android/exoplayer2/common/R.java
+ com.google.android.exoplayer2.common.R
+com/google/android/gms/tasks/R.java
+ com.google.android.gms.tasks.R
+androidx/webkit/R.java
+ androidx.webkit.R
+ androidx.webkit.R$attr
+ androidx.webkit.R$color
+ androidx.webkit.R$dimen
+ androidx.webkit.R$drawable
+ androidx.webkit.R$id
+ androidx.webkit.R$integer
+ androidx.webkit.R$layout
+ androidx.webkit.R$string
+ androidx.webkit.R$style
+ androidx.webkit.R$styleable
+com/tekartik/sqflite/R.java
+ com.tekartik.sqflite.R
+ com.tekartik.sqflite.R$attr
+ com.tekartik.sqflite.R$color
+ com.tekartik.sqflite.R$dimen
+ com.tekartik.sqflite.R$drawable
+ com.tekartik.sqflite.R$id
+ com.tekartik.sqflite.R$integer
+ com.tekartik.sqflite.R$layout
+ com.tekartik.sqflite.R$string
+ com.tekartik.sqflite.R$style
+ com.tekartik.sqflite.R$styleable
