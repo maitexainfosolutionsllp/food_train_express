@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/model/categories.dart';
 import 'package:fooddelivery/model/mostpopular.dart';
+import 'package:fooddelivery/model/pantryfood.dar.dart';
 import 'package:fooddelivery/model/review.dart';
 import 'package:fooddelivery/model/shop.dart';
 import 'package:fooddelivery/model/topRestourants.dart';
 import 'package:fooddelivery/model/trending.dart';
+import 'package:fooddelivery/service/pantryfoodService.dart';
 import 'package:fooddelivery/service/shopService.dart';
 import 'package:fooddelivery/widget/icard1.dart';
 import 'package:fooddelivery/widget/icard10.dart';
@@ -38,11 +40,8 @@ String idOrder;
 class _HomeScreenState extends State<HomeScreen> {
 
   ShopService _shopservice = new ShopService();
-  Map<String, dynamic> _shopListMap;
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
-  //
-  //
-  //
+  PantryFoodService _pantryService = new PantryFoodService();
+
   _pressPromotion(int id){
     print("User press promotion with id: $id");
   }
@@ -188,13 +187,15 @@ class _HomeScreenState extends State<HomeScreen> {
     child: IList1(imageAsset: "assets/trending.png", text: strings.get(40),     // "Trending this week",
     textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
     ),
+
     Container(
     height: height+30,
     child: ListView(
     scrollDirection: Axis.horizontal,
     children: <Widget>[
+      pantryFoodList()
 
-    ICard11(
+    /*ICard11(
     color: theme.colorBackground,
     text: "item.text",
     text2: "item.restaurant",
@@ -207,35 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
     title: theme.text16bold,
     body: theme.text14,
     callback: _onTrendingClick,
-    ),
-    ICard11(
-    color: theme.colorBackground,
-    text: "item.text",
-    text2: "item.restaurant",
-    textInLabel: "\₹25",
-    width: windowWidth * 0.4,
-    height: height,
-    image: "assets/b1.jpg",
-    colorLabel: theme.colorCompanion4,
-    id: "1",
-    title: theme.text16bold,
-    body: theme.text14,
-    callback: _onTrendingClick,
-    ),
-    ICard11(
-    color: theme.colorBackground,
-    text: "item.text",
-    text2: "item.restaurant",
-    textInLabel: "\₹25",
-    width: windowWidth * 0.4,
-    height: height,
-    image: "assets/b1.jpg",
-    colorLabel: theme.colorCompanion4,
-    id: "1",
-    title: theme.text16bold,
-    body: theme.text14,
-    callback: _onTrendingClick,
-    )
+    ),*/
 
     ],
     ),
@@ -555,6 +528,44 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         }
         );
+  }
+
+  pantryFoodList()
+  {
+    var height = windowWidth*0.5*0.8;
+
+    return FutureBuilder<List<PantryFoodModel>>(
+    future:_pantryService.getFoods(),
+    builder: (context, snapshot) {
+      if (snapshot.hasData)
+      {
+        return RowBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
+        {
+         return ICard11(
+            color: theme.colorBackground,
+            text: snapshot.data[index].pantry_food_name,
+            text2: "item.restaurant",
+            textInLabel: "\₹ "+snapshot.data[index].price,
+            width: windowWidth * 0.4,
+            height: height,
+            image: Image.network(snapshot.data[index].image),
+            colorLabel: theme.colorCompanion4,
+            id: "t1",
+            title: theme.text16bold,
+            body: theme.text14,
+            callback: _onTrendingClick,
+          );
+
+        }
+        );
+      }
+      else
+        {
+          return CircularProgressIndicator();
+        }
+    }
+    );
+
   }
 
 }
