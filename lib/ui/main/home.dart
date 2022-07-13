@@ -8,7 +8,6 @@ import 'package:fooddelivery/model/shop.dart';
 import 'package:fooddelivery/model/topRestourants.dart';
 import 'package:fooddelivery/model/trending.dart';
 import 'package:fooddelivery/service/shopService.dart';
-import 'package:fooddelivery/widget/column_builder.dart';
 import 'package:fooddelivery/widget/icard1.dart';
 import 'package:fooddelivery/widget/icard10.dart';
 import 'package:fooddelivery/widget/icard11.dart';
@@ -18,6 +17,7 @@ import 'package:fooddelivery/widget/isearch.dart';
 import 'package:fooddelivery/widget/ilist1.dart';
 import 'package:fooddelivery/widget/ipromotion.dart';
 import 'package:fooddelivery/model/promotion.dart';
+import 'package:fooddelivery/widget/row_builder.dart';
 
 class HomeScreen extends StatefulWidget {
   final Function(String) callback;
@@ -528,7 +528,7 @@ class _HomeScreenState extends State<HomeScreen> {
         {
           if(snapshot.hasData)
           {
-            return ColumnBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
+            return RowBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
             {
               return ICard10(
                                 color: theme.colorBackground,
