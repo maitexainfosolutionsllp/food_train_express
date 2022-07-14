@@ -8,7 +8,7 @@ class ICard11 extends StatefulWidget {
   final double height;
   final String text;
   final String text2;
-  final NetworkImage image;
+  final String image;
   final String id;
   final String textInLabel;
   final TextStyle title;

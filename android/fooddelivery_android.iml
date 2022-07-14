@@ -143,5 +143,6 @@
     <orderEntry type="library" name="Gradle: io.flutter:arm64_v8a_debug:1.0.0-9d5b21729ff53dbf8eadd8bc97e0e30d77abec95@jar" level="project" />
     <orderEntry type="library" name="Gradle: io.flutter:flutter_embedding_debug:1.0.0-9d5b21729ff53dbf8eadd8bc97e0e30d77abec95@jar" level="project" />
     <orderEntry type="library" name="Dart SDK" level="project" />
+    <orderEntry type="library" name="Dart Packages" level="project" />
   </component>
 </module>

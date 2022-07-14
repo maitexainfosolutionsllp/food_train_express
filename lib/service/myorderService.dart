@@ -6,11 +6,11 @@ import 'package:http/http.dart' as http;
 class MyOrderService
 {
   Future<List<MyOders>> getOrders() async {
-    final url = 'http://192.168.1.51:5000/shop/view-orders-pantry';
+    final url = 'http://192.168.1.35:5000/shop/view-orders-pantry';
     var response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
-      print(body);
+    
       List<MyOders> _data = List<MyOders>.from(
           body["data"].map((e) => MyOders.fromJson(e)).toList());
 

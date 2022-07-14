@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/model/categories.dart';
 import 'package:fooddelivery/model/mostpopular.dart';
-import 'package:fooddelivery/model/pantryfood.dar.dart';
+import 'package:fooddelivery/model/pantryfood.dart';
 import 'package:fooddelivery/model/review.dart';
 import 'package:fooddelivery/model/shop.dart';
 import 'package:fooddelivery/model/topRestourants.dart';
@@ -548,7 +548,7 @@ class _HomeScreenState extends State<HomeScreen> {
             textInLabel: "\₹ "+snapshot.data[index].price,
             width: windowWidth * 0.4,
             height: height,
-            image: Image.network(snapshot.data[index].image),
+            image: snapshot.data[index].image,
             colorLabel: theme.colorCompanion4,
             id: "t1",
             title: theme.text16bold,

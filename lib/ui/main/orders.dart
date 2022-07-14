@@ -20,8 +20,8 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
 
+MyOrderService _myOrderService = new MyOrderService();
 
-  MyOrderService _myorderservice = new MyOrderService();
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   //
@@ -47,60 +47,43 @@ class _OrdersScreenState extends State<OrdersScreen> {
   Widget build(BuildContext context) {
     windowWidth = MediaQuery.of(context).size.width;
     windowHeight = MediaQuery.of(context).size.height;
-    var height = windowWidth*0.3;
     return Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+50),
         child: ListView(
           padding: EdgeInsets.only(top: 0, left: 15, right: 15),
           shrinkWrap: true,
+          ///children: _children()
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 10),
-              child: ISearch(
-                hint: strings.get(34), // "Search",
-                icon: Icons.search,
-                onChangeText: _onPressSearch,
-                colorDefaultText: theme.colorDefaultText,
-                colorBackground: theme.colorBackground,
-              ),
-            ),
             SizedBox(height: 20,),
             Container(
-              //margin: EdgeInsets.only(left: 10, right: 10),
-                child: IList1(imageAsset: "assets/orders.png",
-                  text: strings.get(36),                      // "My Orders",
-                  textStyle: theme.text16bold,
-                  imageColor: theme.colorDefaultText,
-                )
-            ),
-            Container(
-              child:ListView(children: <Widget> [
-                myOrders()
+      //margin: EdgeInsets.only(left: 10, right: 10),
+      child: IList1(imageAsset: "assets/orders.png",
+        text: strings.get(36),                      // "My Orders",
+        textStyle: theme.text16bold,
+        imageColor: theme.colorDefaultText,
+      )
+    ),
+    myOrderList(),
+    // Container(
+    //     //margin: EdgeInsets.only(right: 10),
+    //       child: ICard14(
+    //         color: theme.colorBackgroundDialog,
+    //       text: "item.name",
+    //       textStyle: theme.text16bold,
+    //       text2: "item.restaurant",
+    //       textStyle2: theme.text14,
+    //       text3: "item.date",
+    //       textStyle3: theme.text14,
+    //       text4: "item.total",
+    //       textStyle4: theme.text18boldPrimary,
+    //       width: windowWidth,
+    //       height: 120,
+    //       image: "assets/b1.jpg",
+    //       id: "item.id",
+    //       callback: _onItemClick,
+    //     ))
 
-              ],)
-              //margin: EdgeInsets.only(right: 10),
-              //   child: ICard14(
-              //     color: theme.colorBackgroundDialog,
-              //     text: "item.name",
-              //     textStyle: theme.text16bold,
-              //     text2: "item.restaurant",
-              //     textStyle2: theme.text14,
-              //     text3: "item.date",
-              //     textStyle3: theme.text14,
-              //     text4: "300",
-              //     textStyle4: theme.text18boldPrimary,
-              //     width: windowWidth,
-              //     height: height,
-              //     image: "assets/b2.jpg",
-              //     id: "1",
-              //     callback: _onItemClick,
-              //   )
-    )
-
-
-
-
-          ]
+          ],
         )
     );
   }
@@ -162,44 +145,49 @@ class _OrdersScreenState extends State<OrdersScreen> {
         )));
     }
   }
-
-  myOrders()
+  
+  myOrderList() 
   {
-    var height = windowWidth*0.3;
+    print(_myOrderService.getOrders());
 
     return FutureBuilder<List<MyOders>>(
-        future:_myorderservice.getOrders(),
-    builder: (context, snapshot)
-    {
-      if(snapshot.hasData)
-      {
-        return ColumnBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
+        future:_myOrderService.getOrders(),
+        builder: (context, snapshot)
         {
-          return ICard14(
-                  color: theme.colorBackgroundDialog,
-                  text: "item.name",
-                  textStyle: theme.text16bold,
-                  text2: "item.restaurant",
-                  textStyle2: theme.text14,
-                  text3: "item.date",
-                  textStyle3: theme.text14,
-                  text4: "300",
-                  textStyle4: theme.text18boldPrimary,
-                  width: windowWidth,
-                  height: height,
-                  image: "assets/b2.jpg",
-                  id: "1",
-                  callback: _onItemClick,
-                );
+           if(snapshot.hasData)
+          {
+            return ColumnBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
+            {
+              return Container(
+        //margin: EdgeInsets.only(right: 10),
+          child: ICard14(
+            color: theme.colorBackgroundDialog,
+          text: snapshot.data[index].id,
+          textStyle: theme.text16bold,
+          text2: "item.restaurant",
+          textStyle2: theme.text14,
+          text3: "item.date",
+          textStyle3: theme.text14,
+          text4: "item.total",
+          textStyle4: theme.text18boldPrimary,
+          width: windowWidth,
+          height: 150,
+          image: "item.image",
+          id: "item.id",
+          callback: _onItemClick,
+        ));
 
-        });
-    }
-      else
-      {
-        return CircularProgressIndicator();
-      }
-  }
-  );
-  }
+            }
+            );
+          }
+          else
+          {
+            return CircularProgressIndicator();
+
+          }
+
+        }
+    );
 
   }
+}

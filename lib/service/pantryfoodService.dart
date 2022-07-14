@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:fooddelivery/model/pantryfood.dar.dart';
+import 'package:fooddelivery/model/pantryfood.dart';
 import 'package:http/http.dart' as http;
 
 class PantryFoodService
