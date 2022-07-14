@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fooddelivery/api.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/model/dishes.dart';
 import 'package:fooddelivery/model/mostpopular.dart';
@@ -28,6 +31,8 @@ class DishesDetailsScreen extends StatefulWidget {
 
 class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTickerProviderStateMixin {
 
+  bool _isLoading = false;
+
   ///////////////////////////////////////////////////////////////////////////////
   //
 
@@ -49,8 +54,38 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
     _count = count;
   }
 
-  _tapAddToCart(){
-    print("User pressed \"Add to cart\" button. Count = $_count");
+  _tapAddToCart() async
+  {
+    setState(() {
+      _isLoading = true;
+    });
+
+    var data = {
+      "login_id": "",
+      "pantry_food_id": "",
+      "quantity": ""
+    };
+
+    var res = await Api().authData(data, '/shop/order-food');
+    var body = json.decode(res.body);
+
+    if(body['success']==true)
+    {
+      Fluttertoast.showToast(
+        msg: body['message'].toString(),
+        backgroundColor: Colors.grey,
+      );
+
+      route.push(context, "/basket");
+    }
+    else
+    {
+      Fluttertoast.showToast(
+        msg: body['message'].toString(),
+        backgroundColor: Colors.grey,
+      );
+
+    }    
   }
 
   ///////////////////////////////////////////////////////////////////////////////

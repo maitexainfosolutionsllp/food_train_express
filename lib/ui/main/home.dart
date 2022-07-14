@@ -495,6 +495,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   shopList()
   {
+    var height = windowWidth*0.6*0.7;
+    
     return FutureBuilder<List<ShopModel>>(
         future:_shopservice.getShops(),
         builder: (context, snapshot)
@@ -508,12 +510,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: snapshot.data[index].shop_name,
                                 text2: snapshot.data[index].station_name,
                                 width: windowWidth * 0.6,
-                                height: 150,
-                                image: "assets/top1.jpg",
-                                stars: 4,
-                                colorStars: theme.colorPrimary,
-                                id: snapshot.data[index].id,
-                                starsCount: 3,
+                                height: windowWidth*0.6*0.7,
+                                image: "assets/top1.jpg",                                
+                                id: snapshot.data[index].id,                                
                                 title: theme.text18boldPrimary,
                                 body: theme.text16,
                                 callback: _onTopRestaurantClick,
