@@ -498,7 +498,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var height = windowWidth*0.6*0.7;
     
     return FutureBuilder<List<ShopModel>>(
-        future:_shopservice.getShops(),
+        future:_shopservice.getShops(context),
         builder: (context, snapshot)
         {
           if(snapshot.hasData)

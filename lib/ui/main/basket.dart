@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/model/basket.dart';
 import 'package:fooddelivery/model/dishes.dart';
@@ -7,16 +8,21 @@ import 'package:fooddelivery/ui/main/header.dart';
 import 'package:fooddelivery/widget/buttonBorder.dart';
 import 'package:fooddelivery/widget/icard9a.dart';
 import 'package:fooddelivery/widget/ilist1.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BasketScreen extends StatefulWidget {
   final String title;
   final Function onMenuClick;
+
   BasketScreen({Key key, this.title, this.onMenuClick}) : super(key: key);
   @override
   _BasketScreenState createState() => _BasketScreenState();
 }
 
 class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMixin{
+
+  String loginId;
+
 
   ///////////////////////////////////////////////////////////////////////////////
   //
@@ -46,6 +52,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
+    loadUserData();
   }
 
   @override
@@ -74,18 +81,20 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                 Container(margin: EdgeInsets.only(left: 50),
                 child: Text(strings.get(100), style: theme.text14,),),
                 SizedBox(height: 20),
-                ICard9a(
-                  color: theme.colorBackgroundDialog,
-                  width: windowWidth,
-                  height: 100,
-                  colorArrows: theme.colorDefaultText,
-                  title1: "item.text", title1Style: theme.text16bold,
-                  title2Style: theme.text18bold,
-                  price: "20", priceTitleStyle: theme.text20boldPrimary,
-                  image: "item.image",
-                  incDec: _onItemChangeCount,
-                  heroTag: "item.id",
-                  count: 3,)
+
+                listCart(loginId),
+                // ICard9a(
+                //   color: theme.colorBackgroundDialog,
+                //   width: windowWidth,
+                //   height: 100,
+                //   colorArrows: theme.colorDefaultText,
+                //   title1: "item.text", title1Style: theme.text16bold,
+                //   title2Style: theme.text18bold,
+                //   price: "20", priceTitleStyle: theme.text20boldPrimary,
+                //   image: "item.image",
+                //   incDec: _onItemChangeCount,
+                //   heroTag: "item.id",
+                //   count: 3,)
               ],
             ),
           ),
@@ -204,6 +213,28 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
       count: item.count,
     );
   }
+  
+  void loadUserData() async 
+  {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      loginId = (prefs.getString('loginId') ?? '');
+      loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
+    });
+
+    Fluttertoast.showToast(
+        msg: loginId,
+        backgroundColor: Colors.grey,
+      );
+
+  }
+
+
+}
+
+listCart(loginId) async 
+{
+  
 
 
 }

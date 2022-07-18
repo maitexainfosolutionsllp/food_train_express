@@ -1,1 +1,0 @@
-const String googleApi = "GOGLE API KEY";

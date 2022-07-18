@@ -117,7 +117,7 @@ class Menu extends StatelessWidget {
               // _item(7, strings.get(51), "assets/help.png"), // Help & Support
               _item(8, strings.get(37), "assets/settings.png"), // "Account",
               // _item(9, strings.get(62), "assets/language.png"), // Languages
-              if (account.isAuth())
+              // if (account.isAuth())
                 _item(9, "Logout", "assets/signout.png"),
               // _item(11, strings.get(68), "assets/help.png"),      // Term of service
               // ILine(),

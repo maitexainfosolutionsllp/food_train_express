@@ -1,11 +1,14 @@
 import 'dart:convert';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:fooddelivery/model/myorders.dart';
+import 'package:fooddelivery/provider/commonprovider.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class MyOrderService
 {
-  Future<List<MyOders>> getOrders() async {
-    final url = 'http://192.168.1.56:5000/shop/view-orders-pantry';
+  Future<List<MyOders>> getOrders(BuildContext context) async {
+    final url = Provider.of<CommonProvider>(context).base_url+'/shop/view-orders-pantry';
     var response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       var body = json.decode(response.body);

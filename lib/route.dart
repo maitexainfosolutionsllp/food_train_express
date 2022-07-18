@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fooddelivery/delivery_boy/ui/main/orders.dart';
-import 'package:fooddelivery/shop_owner/ui/login/createaccount.dart';
-import 'package:fooddelivery/shop_owner/ui/main/orders.dart';
 import 'package:fooddelivery/ui/login/createaccount.dart';
 import 'package:fooddelivery/ui/login/forgot.dart';
 import 'package:fooddelivery/ui/login/login.dart';
@@ -21,8 +18,6 @@ import 'package:fooddelivery/ui/menu/language.dart';
 import 'package:fooddelivery/ui/menu/termofservice.dart';
 import 'package:fooddelivery/ui/start/onboard.dart';
 
-import 'shop_owner/ui/main/mainscreen.dart';
-
 class AppFoodRoute{
 
   Map<String, StatefulWidget> routes = {
@@ -33,9 +28,9 @@ class AppFoodRoute{
     "/sendphone" : SendPhoneNumberScreen(),
     "/verifyphone" : VerifyPhoneNumberScreen(),
     "/main" : MainScreen(),
-    "/delivery_main" : DeliveryOrdersScreen(),
-    "/shop_main" : ShopMainScreen(),
-    "/shop_create" : ShopCreateAccountScreen(),
+    //"/delivery_main" : DeliveryOrdersScreen(),
+    // "/shop_main" : ShopMainScreen(),
+    // "/shop_create" : ShopCreateAccountScreen(),
     "/notify" : NotificationScreen(),
     "/language" : LanguageScreen(),
     "/help" : HelpScreen(),
