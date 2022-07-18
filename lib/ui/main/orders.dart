@@ -148,8 +148,6 @@ MyOrderService _myOrderService = new MyOrderService();
   
   myOrderList() 
   {
-    print(_myOrderService.getOrders());
-
     return FutureBuilder<List<MyOders>>(
         future:_myOrderService.getOrders(),
         builder: (context, snapshot)

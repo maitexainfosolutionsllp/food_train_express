@@ -18,6 +18,7 @@ import 'package:fooddelivery/widget/icard1.dart';
 import 'package:fooddelivery/widget/icard13.dart';
 import 'package:fooddelivery/widget/iinkwell.dart';
 import 'package:fooddelivery/widget/ilist1.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'header.dart';
 
@@ -32,6 +33,8 @@ class DishesDetailsScreen extends StatefulWidget {
 class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTickerProviderStateMixin {
 
   bool _isLoading = false;
+  String login_id;
+  String foodId;
 
   ///////////////////////////////////////////////////////////////////////////////
   //
@@ -45,6 +48,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
      setState(() {
        _load(id);
        _controller.animateTo(0, duration: Duration(seconds: 1), curve: Curves.ease);
+       foodId = id;
      });
   }
 
@@ -61,9 +65,9 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
     });
 
     var data = {
-      "login_id": "",
-      "pantry_food_id": "",
-      "quantity": ""
+      "login_id": login_id,
+      "pantry_food_id": foodId,
+      "quantity": _count.toString()
     };
 
     var res = await Api().authData(data, '/shop/order-food');
@@ -108,7 +112,10 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
   @override
   void initState() {
     _load(idDishes);
+    _loadUserData();
     super.initState();
+
+
   }
 
   @override
@@ -199,7 +206,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
 
     list.add(Container(
       margin: EdgeInsets.only(left: 20, right: 20),
-      child: IList1(imageAsset: "assets/orders.png", text: _this.text,  // dish name
+      child: IList1(imageAsset: "assets/orders.png", text: "_this.text",  // dish name
         textStyle: theme.text16bold, imageColor: theme.colorDefaultText,),
     ));
 
@@ -218,37 +225,6 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
     //
     // _extras(list);                                                                                    // Extras
 
-    list.add(SizedBox(height: 20,));
-
-    list.add(Container(
-      margin: EdgeInsets.only(left: 20, right: 20),
-      child: IList1(imageAsset: "assets/ingredients.png", text: strings.get(79),               // Ingredients
-        textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
-    ));
-
-    list.add(SizedBox(height: 20,));
-
-    list.add(Container(
-      margin: EdgeInsets.only(left: 20, right: 20),
-      child: Text(strings.get(0), style: theme.text14),                                               // Ingredients description
-    ));
-
-
-    list.add(SizedBox(height: 20,));
-
-    list.add(Container(
-      margin: EdgeInsets.only(left: 20, right: 20),
-      child: IList1(imageAsset: "assets/top.png", text: strings.get(78),              // See Also
-        textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
-    ));
-
-    _mostPopular(list);
-
-    list.add(SizedBox(height: 20,));
-
-
-
-    list.add(SizedBox(height: 10,));
 
 
 
@@ -339,7 +315,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(_this.image),
+                      image: AssetImage("_this.image"),
                       fit: BoxFit.cover
                   ),
                 ),
@@ -372,7 +348,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
     return Container(
         child: Hero(
           tag: idHeroes,
-          child: Image.asset(_this.image,
+          child: Image.asset("_this.image",
               fit: BoxFit.cover
           ),
         )
@@ -536,7 +512,21 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
       ),
     );
   }
+  
+  void _loadUserData() async 
+  {
 
+    foodId = idDishes;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      login_id = (prefs.getString('loginId') ?? '');
+      login_id = login_id.replaceAll(new RegExp(r'[^\w\s]+'),'');
+    });
 
+    Fluttertoast.showToast(
+        msg: foodId,
+        backgroundColor: Colors.grey,
+      );
+  }
 }
 

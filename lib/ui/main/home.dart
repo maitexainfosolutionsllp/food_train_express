@@ -549,7 +549,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: height,
             image: snapshot.data[index].image,
             colorLabel: theme.colorCompanion4,
-            id: "t1",
+            id: snapshot.data[index].id,
             title: theme.text16bold,
             body: theme.text14,
             callback: _onTrendingClick,

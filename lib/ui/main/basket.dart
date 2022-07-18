@@ -64,17 +64,35 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
         color: theme.colorBackground,
         child: Stack(
         children: <Widget>[
-
           Container(
             margin: EdgeInsets.only(left: 0, right: 0, top: MediaQuery.of(context).padding.top+40),
             child: ListView(
-              children: _getDataActive(),
+              children: <Widget>[
+                Container(margin: EdgeInsets.only(left: 15),
+                child: IList1(imageAsset: "assets/shop.png", text: strings.get(99), textStyle: theme.text16bold,), // "Shopping Cart",
+                ),
+                Container(margin: EdgeInsets.only(left: 50),
+                child: Text(strings.get(100), style: theme.text14,),),
+                SizedBox(height: 20),
+                ICard9a(
+                  color: theme.colorBackgroundDialog,
+                  width: windowWidth,
+                  height: 100,
+                  colorArrows: theme.colorDefaultText,
+                  title1: "item.text", title1Style: theme.text16bold,
+                  title2Style: theme.text18bold,
+                  price: "20", priceTitleStyle: theme.text20boldPrimary,
+                  image: "item.image",
+                  incDec: _onItemChangeCount,
+                  heroTag: "item.id",
+                  count: 3,)
+              ],
             ),
           ),
 
           Container(
               margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              child: Header(title: strings.get(98), nomenu: true,) // Basket
+              child: Header(title: "Cart", nomenu: true,) // Basket
           ),
 
           Align(

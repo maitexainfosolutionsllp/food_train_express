@@ -9,8 +9,7 @@ class MyOders
   String quantity;
   String payment_status;
   String order_status;
-  //List<PantryFoodModel> pantryOrderList = [];
-  PantryFoodModel pantryOrderList;
+  List<dynamic> pantryOrderList;
 
 
   MyOders(this.id, this.pantry_food_id, this.login_id, this.quantity, this.payment_status, this.order_status, this.pantryOrderList);
@@ -23,7 +22,7 @@ class MyOders
     quantity= json['quantity'];
     payment_status = json['payment_status'];
     order_status = json['order_status'];
-    pantryOrderList = PantryFoodModel.fromJson(json['pantry']);
+    pantryOrderList = json['pantry'];
 
     // if (json['pantry'] != null) {
     //   for (Iterable row in json['pantry']) {
@@ -45,7 +44,7 @@ class MyOders
     data['quantity'] = this.quantity;
     data['payment_status'] = this.payment_status;
     data['order_status'] = this.order_status;
-    data['pantry'] = this.pantryOrderList;
+    data['pantry'] = this.pantryOrderList.toList();
 
     return data;
   }

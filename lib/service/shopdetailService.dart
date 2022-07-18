@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class ShopDetailService
 {
   Future<List<ShopModel>> getOrders() async {
-    final url = 'http://192.168.1.35:5000/shop/view-shops-food/{shop_id}';
+    final url = 'http://192.168.1.56:5000/shop/view-shops-food/{shop_id}';
     var response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
