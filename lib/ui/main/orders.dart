@@ -148,6 +148,8 @@ MyOrderService _myOrderService = new MyOrderService();
   
   myOrderList() 
   {
+    print(_myOrderService.getOrders());
+
     return FutureBuilder<List<MyOders>>(
         future:_myOrderService.getOrders(),
         builder: (context, snapshot)
@@ -160,7 +162,7 @@ MyOrderService _myOrderService = new MyOrderService();
         //margin: EdgeInsets.only(right: 10),
           child: ICard14(
             color: theme.colorBackgroundDialog,
-          text: snapshot.data[index].id,
+          text: snapshot.data[index].pantry_food_id,
           textStyle: theme.text16bold,
           text2: "item.restaurant",
           textStyle2: theme.text14,
