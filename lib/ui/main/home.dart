@@ -534,7 +534,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var height = windowWidth*0.5*0.8;
 
     return FutureBuilder<List<PantryFoodModel>>(
-    future:_pantryService.getFoods(),
+    future:_pantryService.getFoods(context),
     builder: (context, snapshot) {
       if (snapshot.hasData)
       {

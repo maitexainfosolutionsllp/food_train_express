@@ -121,7 +121,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
 
     list.add(Container(
       margin: EdgeInsets.only(left: 20, right: 20),
-      child: IList1(imageAsset: "assets/orders.png", text: _this.text,                // dish name
+      child: IList1(imageAsset: "assets/orders.png", text: "_this.text",                // dish name
         textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
     ));
 
@@ -264,7 +264,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(_this.image),
+                      image: AssetImage("_this.image"),
                       fit: BoxFit.cover
                   ),
                 ),
@@ -297,7 +297,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
     return Container(
         child: Hero(
           tag: idHeroes,
-          child: Image.asset(_this.image,
+          child: Image.asset("_this.image",
               fit: BoxFit.cover
           ),
         )

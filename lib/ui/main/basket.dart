@@ -4,8 +4,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/model/basket.dart';
 import 'package:fooddelivery/model/dishes.dart';
+import 'package:fooddelivery/model/pantryCart.dart';
+import 'package:fooddelivery/service/pantryCartService.dart';
 import 'package:fooddelivery/ui/main/header.dart';
 import 'package:fooddelivery/widget/buttonBorder.dart';
+import 'package:fooddelivery/widget/column_builder.dart';
 import 'package:fooddelivery/widget/icard9a.dart';
 import 'package:fooddelivery/widget/ilist1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +25,7 @@ class BasketScreen extends StatefulWidget {
 class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMixin{
 
   String loginId;
+  PantryCartService _pantryCartService = new PantryCartService();
 
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -82,7 +86,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                 child: Text(strings.get(100), style: theme.text14,),),
                 SizedBox(height: 20),
 
-                listCart(loginId),
+                ...listCart(loginId),
                 // ICard9a(
                 //   color: theme.colorBackgroundDialog,
                 //   width: windowWidth,
@@ -222,20 +226,50 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
       loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
     });
 
-    Fluttertoast.showToast(
-        msg: loginId,
-        backgroundColor: Colors.grey,
-      );
+  print(loginId);
 
   }
 
+  listCart(loginId) 
+  {
 
-}
+    FutureBuilder<List<PantryCart>>(
+    future: _pantryCartService.getCart(context,loginId),
+    builder: (context,snapshot)
+    {
+      if(snapshot.hasData)
+      {
+        return ColumnBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
+        {
+          return ICard9a(
+                  color: theme.colorBackgroundDialog,
+                  width: windowWidth,
+                  height: 100,
+                  colorArrows: theme.colorDefaultText,
+                  title1: snapshot.data[index].pantry_food_id, title1Style: theme.text16bold,
+                  title2Style: theme.text18bold,
+                  price: snapshot.data[index].food_quantity, priceTitleStyle: theme.text20boldPrimary,
+                  image: 'assets/pr2.jpg',
+                  incDec: _onItemChangeCount,
+                  heroTag: snapshot.data[index].id,
+                  count: 3);
 
-listCart(loginId) async 
-{
+        });
+      }
+      else
+      {
+        return CircularProgressIndicator();
+      }
+
+    }
+  );
   
 
 
 }
+
+
+}
+
+
 
