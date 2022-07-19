@@ -86,7 +86,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                 child: Text(strings.get(100), style: theme.text14,),),
                 SizedBox(height: 20),
 
-                ...listCart(loginId),
+                listCart(loginId),
                 // ICard9a(
                 //   color: theme.colorBackgroundDialog,
                 //   width: windowWidth,
@@ -246,7 +246,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                   width: windowWidth,
                   height: 100,
                   colorArrows: theme.colorDefaultText,
-                  title1: snapshot.data[index].pantry_food_id, title1Style: theme.text16bold,
+                  title1: "title", title1Style: theme.text16bold,
                   title2Style: theme.text18bold,
                   price: snapshot.data[index].food_quantity, priceTitleStyle: theme.text20boldPrimary,
                   image: 'assets/pr2.jpg',
