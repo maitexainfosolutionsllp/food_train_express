@@ -7,12 +7,11 @@ import 'package:provider/provider.dart';
 
 class ShopDetailService
 {
-  Future<List<ShopFoodModel>> getShopFoods(BuildContext context) async {
-    final url = Provider.of<CommonProvider>(context).base_url+'/shop/view-shops-food/62c40426556a256770b611f3';
+  Future<List<ShopFoodModel>> getShopFoods(BuildContext context, String shopId) async {
+    final url = Provider.of<CommonProvider>(context).base_url+'/shop/view-shops-food/'+shopId;
     var response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
-      print(body);
       List<ShopFoodModel> _data = List<ShopFoodModel>.from(
           body["data"].map((e) => ShopFoodModel.fromJson(e)).toList());
 

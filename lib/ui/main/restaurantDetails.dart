@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -469,7 +470,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
     var height = windowWidth*0.5*0.8;
 
     return FutureBuilder<List<ShopFoodModel>>(
-        future:_shopDetailService.getShopFoods(context),
+        future:_shopDetailService.getShopFoods(context, shopId),
         builder: (context, snapshot)
         {
           if (snapshot.hasData)
@@ -503,11 +504,16 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
 
     }
 
-  void getShopDetail(String shopId) async {
+   getShopDetail(String shopId) async {
 
-    final url = Provider.of<CommonProvider>(context).base_url+'/shop/view-shops-food/'+shopId;
+
+    final url = 'http://192.168.1.36:5000/shop/view-single-shop/'+shopId;
     var response = await http.get(Uri.parse(url));
     var body = json.decode(response.body);
+
+    shopName = body['data'][0]['shop_name'];
+
+    Fluttertoast.showToast(msg: shopName,toastLength: Toast.LENGTH_SHORT);
 
   }
 
