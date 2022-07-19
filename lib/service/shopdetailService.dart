@@ -1,22 +1,25 @@
 import 'dart:convert';
-import 'package:fooddelivery/model/shop.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:fooddelivery/model/shopfood.dart';
+import 'package:fooddelivery/provider/commonprovider.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class ShopDetailService
 {
-  Future<List<ShopModel>> getOrders() async {
-    final url = 'http://192.168.1.56:5000/shop/view-shops-food/{shop_id}';
+  Future<List<ShopFoodModel>> getShopFoods(BuildContext context) async {
+    final url = Provider.of<CommonProvider>(context).base_url+'/shop/view-shops-food/62c40426556a256770b611f3';
     var response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
       print(body);
-      List<ShopModel> _data = List<ShopModel>.from(
-          body["data"].map((e) => ShopModel.fromJson(e)).toList());
+      List<ShopFoodModel> _data = List<ShopFoodModel>.from(
+          body["data"].map((e) => ShopFoodModel.fromJson(e)).toList());
 
       return _data;
     }
     else {
-      List<ShopModel> _data = [];
+      List<ShopFoodModel> _data = [];
       return _data;
     }
   }

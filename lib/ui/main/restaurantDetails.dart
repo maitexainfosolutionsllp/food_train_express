@@ -1,19 +1,24 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/model/categories.dart';
 import 'package:fooddelivery/model/mostpopular.dart';
 import 'package:fooddelivery/model/restourant.dart';
-import 'package:fooddelivery/model/review.dart';
+import 'package:fooddelivery/model/shopfood.dart';
 import 'package:fooddelivery/model/topRestourants.dart';
+import 'package:fooddelivery/provider/commonprovider.dart';
+import 'package:fooddelivery/service/shopdetailService.dart';
 import 'package:fooddelivery/ui/main/home.dart';
 import 'package:fooddelivery/ui/menu/menu.dart';
 import 'package:fooddelivery/widget/iboxCircle.dart';
-import 'package:fooddelivery/widget/icard1.dart';
 import 'package:fooddelivery/widget/icard12.dart';
 import 'package:fooddelivery/widget/icard13.dart';
 import 'package:fooddelivery/widget/iinkwell.dart';
 import 'package:fooddelivery/widget/ilist1.dart';
+import 'package:fooddelivery/widget/row_builder.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'header.dart';
 
@@ -24,6 +29,11 @@ class RestaurantDetailsScreen extends StatefulWidget {
 }
 
 class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with SingleTickerProviderStateMixin {
+
+  ShopDetailService _shopDetailService = new ShopDetailService();
+  String shopId;
+  String shopName;
+
 
   ///////////////////////////////////////////////////////////////////////////////
   //
@@ -56,6 +66,8 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
   @override
   void initState() {
     _load(idRestaurant);
+    shopId = idRestaurant;
+    getShopDetail(shopId);
     super.initState();
   }
 
@@ -106,10 +118,82 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
   }
 
   _body(){
+    var height = windowWidth*0.5*0.8;
     return Container(
       child: ListView(
         padding: EdgeInsets.only(top: 0),
-        children: _children(),
+        children: <Widget>[
+          SizedBox(height: 20,),
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: IList1(imageAsset: "assets/orders.png", text: "_this.text",                // dish name
+                textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+          ),
+          SizedBox(height: 20,),
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: Text(strings.get(0), style: theme.text14),                                               // dish description
+          ),
+          SizedBox(height: 20,),
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: IList1(imageAsset: "assets/info.png", text: strings.get(69),                 // Information
+                textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+          ),
+      Container(
+        margin: EdgeInsets.only(left: 20, right: 20),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+                child: Text("Phone: 233 223 2334", style: theme.text14)
+            ),
+            IInkWell(child: IBoxCircle(child: _icon(), color: Colors.white,), onPress: _callMe,)
+          ],
+        ),
+      ),SizedBox(height: 20,),
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: IList1(imageAsset: "assets/top.png", text: strings.get(91),                // Dishes
+                textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+          ),
+
+          shopFoodList(),
+
+
+          // Container(
+          //   margin: EdgeInsets.only(left: 5, right: 5),
+          //   child: Row(
+          //     children: <Widget>[
+          //       ICard13(
+          //         color: theme.colorBackground,
+          //         text: "item.text",
+          //         width: windowWidth * 0.5 - 15,
+          //         height: height,
+          //         image: "item.image",
+          //         id: "t1",
+          //         stars: 4,
+          //         colorStars: theme.colorPrimary,
+          //         textStyle: theme.text16bold,
+          //         callback: _onDishesClick,
+          //       ),
+          //       SizedBox(width: 10,),
+          //       ICard13(
+          //         color: theme.colorBackground,
+          //         text: "item.text",
+          //         width: windowWidth * 0.5 - 15,
+          //         height: height,
+          //         image: "item.image",
+          //         id: "t2",
+          //         stars: 4,
+          //         colorStars: theme.colorPrimary,
+          //         textStyle: theme.text16bold,
+          //         callback: _onDishesClick,
+          //       )
+          //     ],
+          //   ),
+          // )
+
+        ],
       ),
     );
   }
@@ -239,19 +323,6 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
         ),
       ));
     }
-  }
-
-  _reviews(List<Widget> list){
-    for (var item in reviews)
-      list.add(Container(
-        margin: EdgeInsets.only(left: 20, right: 20),
-        child: ICard1(
-          color: theme.colorPrimary,
-          title: item.name, text: item.text, date: item.date,
-          titleStyle: theme.text18bold, textStyle: theme.text16, dateStyle: theme.text14grey,
-          userAvatar: item.image, rating: item.star,
-        ),
-      ));
   }
 
   _addImage(List<Widget> list, double width, double height){
@@ -391,6 +462,53 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
         children: list,
       ),
     );
+  }
+
+  shopFoodList()
+  {
+    var height = windowWidth*0.5*0.8;
+
+    return FutureBuilder<List<ShopFoodModel>>(
+        future:_shopDetailService.getShopFoods(context),
+        builder: (context, snapshot)
+        {
+          if (snapshot.hasData)
+          {
+            return RowBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
+            {
+              return ICard13(
+                          color: theme.colorBackground,
+                          text: snapshot.data[index].shop_food_name,
+                          width: windowWidth * 0.5 - 15,
+                          height: height,
+                          image: "item.image",
+                          id: snapshot.data[index].id,
+                          stars: 5,
+                          colorStars: theme.colorPrimary,
+                          textStyle: theme.text16bold,
+                          callback: _onDishesClick,
+                        );
+
+            }
+            );
+          }
+          else
+            {
+              return CircularProgressIndicator();
+
+            }
+
+        }
+        );
+
+    }
+
+  void getShopDetail(String shopId) async {
+
+    final url = Provider.of<CommonProvider>(context).base_url+'/shop/view-shops-food/'+shopId;
+    var response = await http.get(Uri.parse(url));
+    var body = json.decode(response.body);
+
   }
 
 }

@@ -211,7 +211,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
       title1: item.text, title1Style: theme.text16bold,
       title2Style: theme.text18bold,
       price: "${item.currency}${item.price.toStringAsFixed(2)}", priceTitleStyle: theme.text20boldPrimary,
-      image: item.image,
+      // image: item.image,
       incDec: _onItemChangeCount,
       heroTag: item.id,
       count: item.count,
