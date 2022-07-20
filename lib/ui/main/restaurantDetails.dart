@@ -34,6 +34,8 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
   ShopDetailService _shopDetailService = new ShopDetailService();
   String shopId;
   String shopName;
+  String shopContact;
+  String shopStation;
 
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -68,8 +70,8 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
   void initState() {
     _load(idRestaurant);
     shopId = idRestaurant;
-    getShopDetail(shopId);
     super.initState();
+    getShopDetail(shopId);
   }
 
   @override
@@ -127,18 +129,15 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
           SizedBox(height: 20,),
           Container(
             margin: EdgeInsets.only(left: 20, right: 20),
-            child: IList1(imageAsset: "assets/orders.png", text: "_this.text",                // dish name
+            child: IList1(imageAsset: "assets/orders.png", text: this.shopName.toString(),                // dish name
                 textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
           ),
           SizedBox(height: 20,),
-          Container(
-            margin: EdgeInsets.only(left: 20, right: 20),
-            child: Text(strings.get(0), style: theme.text14),                                               // dish description
-          ),
+
           SizedBox(height: 20,),
           Container(
             margin: EdgeInsets.only(left: 20, right: 20),
-            child: IList1(imageAsset: "assets/info.png", text: strings.get(69),                 // Information
+            child: IList1(imageAsset: "assets/info.png", text: 'Station: '+shopStation.toString(),                 // Information
                 textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
           ),
       Container(
@@ -146,7 +145,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
         child: Row(
           children: <Widget>[
             Expanded(
-                child: Text("Phone: 233 223 2334", style: theme.text14)
+                child: Text("Contact: "+shopContact.toString(), style: theme.text14)
             ),
             IInkWell(child: IBoxCircle(child: _icon(), color: Colors.white,), onPress: _callMe,)
           ],
@@ -369,7 +368,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
     return Container(
         child: Hero(
           tag: idHeroes,
-          child: Image.asset("_this.image",
+          child: Image.asset("assets/top2.jpg",
               fit: BoxFit.cover
           ),
         )
@@ -382,7 +381,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
       child: Row(
         children: <Widget>[
           Expanded(
-              child: Text("Phone: 233 223 2334", style: theme.text14)
+              child: Text('Phone: '+shopContact, style: theme.text14)
           ),
           IInkWell(child: IBoxCircle(child: _icon(), color: Colors.white,), onPress: _callMe,)
         ],
@@ -406,7 +405,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
   }
 
   _callMe() async {
-    var uri = 'tel:233 223 2334';
+    var uri = 'tel:'+shopContact;
     if (await canLaunch(uri))
       await launch(uri);
   }
@@ -482,7 +481,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
                           text: snapshot.data[index].shop_food_name,
                           width: windowWidth * 0.5 - 15,
                           height: height,
-                          image: "item.image",
+                          image: "",
                           id: snapshot.data[index].id,
                           stars: 5,
                           colorStars: theme.colorPrimary,
@@ -504,16 +503,23 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
 
     }
 
-   getShopDetail(String shopId) async {
+   void getShopDetail(String shopId) async {
 
 
-    final url = 'http://192.168.1.36:5000/shop/view-single-shop/'+shopId;
+    final url = 'http://192.168.1.56:5000/shop/view-single-shop/'+shopId;
     var response = await http.get(Uri.parse(url));
     var body = json.decode(response.body);
 
-    shopName = body['data'][0]['shop_name'];
+    setState(() {
+      shopName = body['data'][0]['shop_name'];
+      shopContact = body['data'][0]['contact_no'];
+      shopStation = body['data'][0]['station_name'];
+    });
 
-    Fluttertoast.showToast(msg: shopName,toastLength: Toast.LENGTH_SHORT);
+    // Fluttertoast.showToast(
+    //   msg: shopContact,
+    //   backgroundColor: Colors.grey,
+    // );
 
   }
 

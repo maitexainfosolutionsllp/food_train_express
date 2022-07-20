@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/widget/iAvatarWithPhotoFileCaching.dart';
 import 'package:fooddelivery/widget/ibutton2.dart';
 import 'package:fooddelivery/widget/ilist4.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class AccountScreen extends StatefulWidget {
@@ -13,6 +17,11 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+
+  String loginId;
+  String userName;
+  String userEmail;
+  String userContact;
 
   ///////////////////////////////////////////////////////////////////////////////
   //
@@ -46,6 +55,7 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
     super.initState();
+    loadUserData();
   }
 
   @override
@@ -76,7 +86,36 @@ class _AccountScreenState extends State<AccountScreen> {
                 child: ListView(
                   padding: EdgeInsets.only(top: 0),
                   shrinkWrap: true,
-                  children: _getList(),
+                  children: <Widget>[
+                    Stack(
+                      children: [
+                        IAvatarWithPhotoFileCaching(
+                          avatar: account.userAvatar,
+                          color: theme.colorPrimary,
+                          colorBorder: theme.colorGrey,
+                          callback: _makePhoto,
+                        ),
+                        _logoutWidget(),
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+                    Container(
+                      color: theme.colorBackgroundGray,
+                      child: _userInfo(),
+                    ),
+                    SizedBox(height: 30),
+                    Container(
+                        margin: EdgeInsets.only(left: 30, right: 30),
+                        child: _logout()
+                    ),
+                    SizedBox(height: 30),
+                    // Container(
+                    //     margin: EdgeInsets.only(left: 30, right: 30),
+                    //     child: _changePassword()
+                    // ),
+                    SizedBox(height: 100,)
+                  ],
+                  //_getList()
                 )
             ),
           ),
@@ -202,19 +241,19 @@ class _AccountScreenState extends State<AccountScreen> {
 
             IList4(text: "${strings.get(57)}:", // "Username",
               textStyle: theme.text14bold,
-              text2: account.userName,
+              text2: userName,
               textStyle2: theme.text14bold,
             ),
             SizedBox(height: 10,),
             IList4(text: "${strings.get(58)}:", // "E-mail",
               textStyle: theme.text14bold,
-              text2: account.email,
+              text2: userEmail,
               textStyle2: theme.text14bold,
             ),
             SizedBox(height: 10,),
             IList4(text: "${strings.get(59)}:", // "Phone",
               textStyle: theme.text14bold,
-              text2: account.phone,
+              text2: userContact,
               textStyle2: theme.text14bold,
             ),
             SizedBox(height: 10,),
@@ -223,5 +262,30 @@ class _AccountScreenState extends State<AccountScreen> {
         )
 
     );
+  }
+
+  void loadUserData() async
+  {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      loginId = (prefs.getString('loginId') ?? '');
+      loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
+    });
+
+    // Fluttertoast.showToast(
+    //       msg: loginId,
+    //       backgroundColor: Colors.grey,
+    //     );
+
+    final url = 'http://192.168.1.56:5000/user/view-user-profile/'+loginId;
+    var response = await http.get(Uri.parse(url));
+    var body = json.decode(response.body);
+
+    setState(() {
+      userName = body['data'][0]['name'];
+      userEmail = body['data'][0]['email_id'];
+      userContact = body['data'][0]['contact_no'];
+    });
+
   }
 }

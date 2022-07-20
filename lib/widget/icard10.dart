@@ -40,7 +40,7 @@ class _ICard10State extends State<ICard10>{
     return Container(
           margin: EdgeInsets.only(left: 10, top: 10, bottom: 10),
           width: widget.width-10,
-          height: widget.height-20,
+          height: widget.height-0,
           decoration: BoxDecoration(
               color: widget.color,
               borderRadius: new BorderRadius.circular(15),

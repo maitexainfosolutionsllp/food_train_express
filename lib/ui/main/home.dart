@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
     child: IList1(imageAsset: "assets/top.png", text: "Station Shops",    // "Top Restaurants",
     textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
     ),
-    Container(height: height+20,
+    Container(height: height+35,
     child: ListView(
       scrollDirection: Axis.horizontal,
         children: [ shopList(), ]
@@ -506,17 +506,17 @@ class _HomeScreenState extends State<HomeScreen> {
             return RowBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
             {
               return ICard10(
-                                color: theme.colorBackground,
-                                text: snapshot.data[index].shop_name,
-                                text2: snapshot.data[index].station_name,
-                                width: windowWidth * 0.6,
-                                height: windowWidth*0.6*0.7,
-                                image: "assets/top1.jpg",                                
-                                id: snapshot.data[index].id,                                
-                                title: theme.text18boldPrimary,
-                                body: theme.text16,
-                                callback: _onTopRestaurantClick,
-                              );
+              color: theme.colorBackground,
+              text: snapshot.data[index].shop_name,
+              text2: snapshot.data[index].station_name,
+              width: windowWidth * 0.6,
+              height: windowWidth*0.6*0.7,
+              image: "assets/top1.jpg",
+              id: snapshot.data[index].id,
+              title: theme.text18boldPrimary,
+              body: theme.text16,
+              callback: _onTopRestaurantClick,
+            );
 
             });
 
@@ -543,11 +543,11 @@ class _HomeScreenState extends State<HomeScreen> {
          return ICard11(
             color: theme.colorBackground,
             text: snapshot.data[index].pantry_food_name,
-            text2: "item.restaurant",
+            text2: snapshot.data[index].pantry_food_category,
             textInLabel: "\₹ "+snapshot.data[index].price,
             width: windowWidth * 0.4,
             height: height,
-            image: snapshot.data[index].image,
+            image: 'assets/pr4.jpg',
             colorLabel: theme.colorCompanion4,
             id: snapshot.data[index].id,
             title: theme.text16bold,
