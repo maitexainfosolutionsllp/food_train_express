@@ -14,8 +14,7 @@ class PantryCartService
     var response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
-      print(body);
-    
+        
     List<PantryCart> _data = List<PantryCart>.from(
           body["data"].map((e) => PantryCart.fromJson(e)).toList());
 

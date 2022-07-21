@@ -86,7 +86,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                 child: Text(strings.get(100), style: theme.text14,),),
                 SizedBox(height: 20),
 
-                listCart(loginId),
+                listCart("62bfd068a0b786ee2976d3d5"),
                 // ICard9a(
                 //   color: theme.colorBackgroundDialog,
                 //   width: windowWidth,
@@ -222,19 +222,23 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
   {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      loginId = (prefs.getString('loginId') ?? '');
-      loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
-    });
+      this.loginId = (prefs.getString('loginId'));
+      this.loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
 
-  print(loginId);
+      listCart(this.loginId);
+    });
 
   }
 
-  listCart(loginId) 
+  listCart(loginId)
   {
+    Fluttertoast.showToast(
+      msg: loginId,
+      backgroundColor: Colors.grey,
+    );
 
     FutureBuilder<List<PantryCart>>(
-    future: _pantryCartService.getCart(context,loginId),
+    future: _pantryCartService.getCart(context,"62bfd068a0b786ee2976d3d5"),
     builder: (context,snapshot)
     {
       if(snapshot.hasData)
