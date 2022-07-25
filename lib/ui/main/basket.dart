@@ -86,7 +86,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                 child: Text(strings.get(100), style: theme.text14,),),
                 SizedBox(height: 20),
 
-                listCart("62bfd068a0b786ee2976d3d5"),
+                listCart(loginId),
                 // ICard9a(
                 //   color: theme.colorBackgroundDialog,
                 //   width: windowWidth,
@@ -145,10 +145,9 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
     for (var item in basket)
       _total += (item.price*item.count);
 
-    list.add(_itemText(strings.get(93), "\₹${_total.toStringAsFixed(2)}", false));  // "Subtotal",
+    list.add(_itemText(strings.get(93), "\₹100", false));  // "Subtotal",
     list.add(SizedBox(height: 5,));
-    list.add(_itemText(strings.get(94), "\₹30", false));                            // "Shopping costs",
-    list.add(SizedBox(height: 5,));
+
     var _taxes = _total*0.25;
     list.add(_itemText(strings.get(95), "\₹${_taxes.toStringAsFixed(2)}", false));  // "Taxes",
     list.add(SizedBox(height: 5,));
@@ -225,12 +224,12 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
       this.loginId = (prefs.getString('loginId'));
       this.loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
 
-      listCart("62bfd068a0b786ee2976d3d5");
+      listCart(loginId);
     });
 
   }
 
-  listCart(loginId) async
+  Widget listCart(loginId)
   {
     Fluttertoast.showToast(
       msg: loginId,
@@ -238,7 +237,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
     );
 
     FutureBuilder<List<PantryCart>>(
-    future: _pantryCartService.getCart(context,"62bfd068a0b786ee2976d3d5"),
+    future: _pantryCartService.getCart(context,loginId),
     builder: (context,snapshot)
     {
       if(snapshot.hasData)

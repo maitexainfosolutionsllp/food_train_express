@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -35,6 +36,9 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
   bool _isLoading = false;
   String login_id;
   String foodId;
+  String foodName;
+  String foodPrice;
+  String foodQuantity;
 
   ///////////////////////////////////////////////////////////////////////////////
   //
@@ -113,7 +117,9 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
   void initState() {
     _load(idDishes);
     _loadUserData();
+    foodId = idDishes;
     super.initState();
+    getFoodDetails(foodId);
 
 
   }
@@ -206,7 +212,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
 
     list.add(Container(
       margin: EdgeInsets.only(left: 20, right: 20),
-      child: IList1(imageAsset: "assets/orders.png", text: "_this.text",  // dish name
+      child: IList1(imageAsset: "assets/orders.png", text: foodName,  // dish name
         textStyle: theme.text16bold, imageColor: theme.colorDefaultText,),
     ));
 
@@ -214,7 +220,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
 
     list.add(Container(
       margin: EdgeInsets.only(left: 20, right: 20),
-      child: Text(strings.get(0), style: theme.text14),                                               // dish description
+      child: Text("Price: "+foodPrice, style: theme.text14),                                               // dish description
     ));
 
     list.add(SizedBox(height: 20,));
@@ -315,7 +321,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("_this.image"),
+                      image: AssetImage("assets/pr5.jpg"),
                       fit: BoxFit.cover
                   ),
                 ),
@@ -348,7 +354,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
     return Container(
         child: Hero(
           tag: idHeroes,
-          child: Image.asset("_this.image",
+          child: Image.asset("assets/pr5.jpg",
               fit: BoxFit.cover
           ),
         )
@@ -527,6 +533,19 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
         msg: foodId,
         backgroundColor: Colors.grey,
       );
+  }
+
+  void getFoodDetails(String foodId) async
+  {
+    final url = 'http://192.168.1.45:5000/shop/view-pantry-food-details/'+foodId;
+    var response = await http.get(Uri.parse(url));
+    var body = json.decode(response.body);
+
+    setState(() {
+      foodName     = body['data'][0]['pantry_food_name'];
+      foodPrice    = body['data'][0]['price'];
+      foodQuantity = body['data'][0]['quantity'];
+    });
   }
 }
 

@@ -214,36 +214,36 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
     ),
     SizedBox(height: 20),
-    Container(
-    margin: EdgeInsets.only(left: 20),
-    child: IList1(imageAsset: "assets/categories.png", text: strings.get(41),   // "Food categories",
-    textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
-    ),
-    Container(
-    height: height+20,
-    child: ListView(
-    scrollDirection: Axis.horizontal,
-    children: <Widget>[
-
-    ICard11(
-    color: theme.colorBackground,
-    text: "Pasta",
-    text2: "25544",
-    textInLabel: "\$20",
-    width: windowWidth * 0.4,
-    height: height,
-    image: "assets/c1.jpg",
-    colorLabel: theme.colorCompanion4,
-    id: "2",
-    title: theme.text16bold,
-    body: theme.text14,
-    callback: _onTrendingClick,
-    )
-
-
-    ],
-    ),
-    ),
+    // Container(
+    // margin: EdgeInsets.only(left: 20),
+    // child: IList1(imageAsset: "assets/categories.png", text: strings.get(41),   // "Food categories",
+    // textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+    // ),
+    // Container(
+    // height: height+20,
+    // child: ListView(
+    // scrollDirection: Axis.horizontal,
+    // children: <Widget>[
+    //
+    // ICard11(
+    // color: theme.colorBackground,
+    // text: "Pasta",
+    // text2: "25544",
+    // textInLabel: "\$20",
+    // width: windowWidth * 0.4,
+    // height: height,
+    // image: "assets/c1.jpg",
+    // colorLabel: theme.colorCompanion4,
+    // id: "2",
+    // title: theme.text16bold,
+    // body: theme.text14,
+    // callback: _onTrendingClick,
+    // )
+    //
+    //
+    // ],
+    // ),
+    // ),
       SizedBox(height: 80,),
       Container(
         margin: EdgeInsets.only(left: 20),
@@ -303,17 +303,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
     list.add(_horizontalTrending());
 
-    list.add(SizedBox(height: 20,));
+    // list.add(SizedBox(height: 20,));
 
-    list.add(Container(
-      margin: EdgeInsets.only(left: 20),
-      child: IList1(imageAsset: "assets/categories.png", text: strings.get(41),   // "Food categories",
-        textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
-    ));
+    // list.add(Container(
+    //   margin: EdgeInsets.only(left: 20),
+    //   child: IList1(imageAsset: "assets/categories.png", text: strings.get(41),   // "Food categories",
+    //     textStyle: theme.text16bold, imageColor: theme.colorDefaultText),
+    // ));
 
-    list.add(SizedBox(height: 10,));
-
-    list.add(_horizontalCategories());
+    // list.add(SizedBox(height: 10,));
+    //
+    // list.add(_horizontalCategories());
 
     list.add(SizedBox(height: 20,));
 
