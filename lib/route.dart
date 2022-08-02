@@ -13,6 +13,7 @@ import 'package:fooddelivery/ui/main/notification.dart';
 import 'package:fooddelivery/ui/main/orderdetails.dart';
 import 'package:fooddelivery/ui/main/payment.dart';
 import 'package:fooddelivery/ui/main/restaurantDetails.dart';
+import 'package:fooddelivery/ui/main/shopdishesDetails.dart';
 import 'package:fooddelivery/ui/menu/help.dart';
 import 'package:fooddelivery/ui/menu/language.dart';
 import 'package:fooddelivery/ui/menu/termofservice.dart';
@@ -31,6 +32,7 @@ class AppFoodRoute{
     //"/delivery_main" : DeliveryOrdersScreen(),
     // "/shop_main" : ShopMainScreen(),
     // "/shop_create" : ShopCreateAccountScreen(),
+    "/shopdishesdetails": ShopDishesDetailsScreen(),
     "/notify" : NotificationScreen(),
     "/language" : LanguageScreen(),
     "/help" : HelpScreen(),

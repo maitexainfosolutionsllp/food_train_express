@@ -74,7 +74,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
       "quantity": _count.toString()
     };
 
-    var res = await Api().authData(data, '/shop/order-food');
+    var res = await Api().authData(data, '/pantry/order-food');
     var body = json.decode(res.body);
 
     if(body['success']==true)
@@ -212,7 +212,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
 
     list.add(Container(
       margin: EdgeInsets.only(left: 20, right: 20),
-      child: IList1(imageAsset: "assets/orders.png", text: foodName,  // dish name
+      child: IList1(imageAsset: "assets/orders.png", text: foodName.toString(),  // dish name
         textStyle: theme.text16bold, imageColor: theme.colorDefaultText,),
     ));
 
@@ -220,7 +220,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
 
     list.add(Container(
       margin: EdgeInsets.only(left: 20, right: 20),
-      child: Text("Price: "+foodPrice, style: theme.text14),                                               // dish description
+      child: Text(foodPrice.toString(), style: theme.text14),                                               // dish description
     ));
 
     list.add(SizedBox(height: 20,));
@@ -529,15 +529,15 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
       login_id = login_id.replaceAll(new RegExp(r'[^\w\s]+'),'');
     });
 
-    Fluttertoast.showToast(
-        msg: foodId,
-        backgroundColor: Colors.grey,
-      );
+    // Fluttertoast.showToast(
+    //     msg: foodId,
+    //     backgroundColor: Colors.grey,
+    //   );
   }
 
   void getFoodDetails(String foodId) async
   {
-    final url = 'http://192.168.1.45:5000/shop/view-pantry-food-details/'+foodId;
+    final url = 'http://192.168.1.37:8000/shop/view-pantry-food-details/'+foodId;
     var response = await http.get(Uri.parse(url));
     var body = json.decode(response.body);
 

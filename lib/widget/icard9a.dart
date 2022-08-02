@@ -104,7 +104,9 @@ class _ICard9aState extends State<ICard9a>{
                         alignment: Alignment.bottomRight,
                         child: Stack(
                           children: <Widget>[
-                            _plusMinus()
+                            _plusMinus(),
+                            Flexible(child: TextButton(child: Text("Delete"),))
+                            
                           ],
                         ),
                       ),

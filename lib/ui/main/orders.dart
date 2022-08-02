@@ -50,6 +50,9 @@ MyOrderService _myOrderService = new MyOrderService();
     return Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+50),
         child: ListView(
+          physics: BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           padding: EdgeInsets.only(top: 0, left: 15, right: 15),
           shrinkWrap: true,
           ///children: _children()

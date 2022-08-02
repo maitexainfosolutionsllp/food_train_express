@@ -86,19 +86,19 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                 child: Text(strings.get(100), style: theme.text14,),),
                 SizedBox(height: 20),
 
-                listCart(loginId),
-                // ICard9a(
-                //   color: theme.colorBackgroundDialog,
-                //   width: windowWidth,
-                //   height: 100,
-                //   colorArrows: theme.colorDefaultText,
-                //   title1: "item.text", title1Style: theme.text16bold,
-                //   title2Style: theme.text18bold,
-                //   price: "20", priceTitleStyle: theme.text20boldPrimary,
-                //   image: "item.image",
-                //   incDec: _onItemChangeCount,
-                //   heroTag: "item.id",
-                //   count: 3,)
+               // listCart(loginId),
+                ICard9a(
+                  color: theme.colorBackgroundDialog,
+                  width: windowWidth,
+                  height: 100,
+                  colorArrows: theme.colorDefaultText,
+                  title1: "item.text", title1Style: theme.text16bold,
+                  title2Style: theme.text18bold,
+                  price: "20", priceTitleStyle: theme.text20boldPrimary,
+                  image: "item.image",
+                  incDec: _onItemChangeCount,
+                  heroTag: "item.id",
+                  count: 3,)
               ],
             ),
           ),

@@ -5,6 +5,7 @@ import 'package:fooddelivery/route.dart';
 import 'package:fooddelivery/config/theme.dart';
 import 'package:fooddelivery/ui/login/forgot.dart';
 import 'package:fooddelivery/ui/login/login.dart';
+import 'package:fooddelivery/ui/main/shopdishesDetails.dart';
 import 'package:fooddelivery/ui/start/splash.dart';
 import 'package:provider/provider.dart';
 
@@ -65,6 +66,7 @@ class AppFoodDelivery  extends StatelessWidget {
         '/splash': (BuildContext context) => SplashScreen(),
         '/login': (BuildContext context) => LoginScreen(),
         '/forgot': (BuildContext context) => ForgotScreen(),
+        '/shopdishesdetails': (BuildContext context) => ShopDishesDetailsScreen(),
         // '/shop_main': (BuildContext context) => ShopMainScreen(),
         // '/shop_create' : (BuildContext context) => ShopCreateAccountScreen(),
       },

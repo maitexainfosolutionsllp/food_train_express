@@ -51,7 +51,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
     idDishes = id;
     idHeroes = heroId;
     route.setDuration(1);
-    route.push(context, "/dishesdetails");
+    route.push(context, "/shopdishesdetails");
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -479,9 +479,9 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
               return ICard13(
                           color: theme.colorBackground,
                           text: snapshot.data[index].shop_food_name,
-                          width: windowWidth * 0.5 - 15,
+                          width: windowWidth * 0.5 - 25,
                           height: height,
-                          image: "",
+                          image: "assets/c4.jpg",
                           id: snapshot.data[index].id,
                           stars: 5,
                           colorStars: theme.colorPrimary,
@@ -506,7 +506,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
    void getShopDetail(String shopId) async {
 
 
-    final url = 'http://192.168.1.56:5000/shop/view-single-shop/'+shopId;
+    final url = 'http://192.168.1.37:8000/shop/view-single-shop/'+shopId;
     var response = await http.get(Uri.parse(url));
     var body = json.decode(response.body);
 

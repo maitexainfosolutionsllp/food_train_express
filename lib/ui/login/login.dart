@@ -55,7 +55,6 @@ class _LoginScreenState extends State<LoginScreen>
           );
         }
 
-
     // print("User pressed \"LOGIN\" button");
     // print("Login: ${editControllerName.text}, password: ${editControllerPassword.text}");
 
@@ -73,7 +72,8 @@ class _LoginScreenState extends State<LoginScreen>
     // }
   }
 
-  _pressDontHaveAccountButton(){
+  _pressDontHaveAccountButton()
+  {
     print("User press \"Don't have account\" button");
     route.push(context, "/createaccount");
   }
