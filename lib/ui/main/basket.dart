@@ -5,12 +5,14 @@ import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/model/basket.dart';
 import 'package:fooddelivery/model/dishes.dart';
 import 'package:fooddelivery/model/pantryCart.dart';
+import 'package:fooddelivery/provider/commonprovider.dart';
 import 'package:fooddelivery/service/pantryCartService.dart';
 import 'package:fooddelivery/ui/main/header.dart';
 import 'package:fooddelivery/widget/buttonBorder.dart';
 import 'package:fooddelivery/widget/column_builder.dart';
 import 'package:fooddelivery/widget/icard9a.dart';
 import 'package:fooddelivery/widget/ilist1.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BasketScreen extends StatefulWidget {
@@ -23,10 +25,9 @@ class BasketScreen extends StatefulWidget {
 }
 
 class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMixin{
-
-  String loginId;
   PantryCartService _pantryCartService = new PantryCartService();
 
+  String loginId;
 
   ///////////////////////////////////////////////////////////////////////////////
   //
@@ -56,7 +57,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    loadUserData();
+    // loadUserData();
   }
 
   @override
@@ -67,17 +68,33 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+
+    loginId = Provider.of<CommonProvider>(context,listen: false).getLoginId().toString();
+
+
     windowWidth = MediaQuery.of(context).size.width;
     windowHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        body: Container(
-        color: theme.colorBackground,
+        body: WillPopScope(
+          onWillPop: () async {
+            // if (_show != 0){
+            //   setState(() {
+            //     _show = 0;
+            //   });
+            // }else
+              // _onBackPressed();
+            return false;
+          },
+        // color: theme.colorBackground,
         child: Stack(
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 0, right: 0, top: MediaQuery.of(context).padding.top+40),
             child: ListView(
+              physics: BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               children: <Widget>[
                 Container(margin: EdgeInsets.only(left: 15),
                 child: IList1(imageAsset: "assets/shop.png", text: strings.get(99), textStyle: theme.text16bold,), // "Shopping Cart",
@@ -86,19 +103,19 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                 child: Text(strings.get(100), style: theme.text14,),),
                 SizedBox(height: 20),
 
-               // listCart(loginId),
-                ICard9a(
-                  color: theme.colorBackgroundDialog,
-                  width: windowWidth,
-                  height: 100,
-                  colorArrows: theme.colorDefaultText,
-                  title1: "item.text", title1Style: theme.text16bold,
-                  title2Style: theme.text18bold,
-                  price: "20", priceTitleStyle: theme.text20boldPrimary,
-                  image: "item.image",
-                  incDec: _onItemChangeCount,
-                  heroTag: "item.id",
-                  count: 3,)
+               listCart(),
+                // ICard9a(
+                //   color: theme.colorBackgroundDialog,
+                //   width: windowWidth,
+                //   height: 100,
+                //   colorArrows: theme.colorDefaultText,
+                //   title1: "item.text", title1Style: theme.text16bold,
+                //   title2Style: theme.text18bold,
+                //   price: "20", priceTitleStyle: theme.text20boldPrimary,
+                //   image: "item.image",
+                //   incDec: _onItemChangeCount,
+                //   heroTag: "item.id",
+                //   count: 3,)
               ],
             ),
           ),
@@ -217,27 +234,22 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
     );
   }
   
-  void loadUserData() async 
+  // void loadUserData() async
+  // {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     loginId = (prefs.getString('loginId'));
+  //     this.loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
+  //   });
+  //
+  // }
+
+  listCart()
   {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      this.loginId = (prefs.getString('loginId'));
-      this.loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
+    print(loginId);
 
-      listCart(loginId);
-    });
-
-  }
-
-  Widget listCart(loginId)
-  {
-    Fluttertoast.showToast(
-      msg: loginId,
-      backgroundColor: Colors.grey,
-    );
-
-    FutureBuilder<List<PantryCart>>(
-    future: _pantryCartService.getCart(context,loginId),
+    return FutureBuilder<List<PantryCart>>(
+    future: _pantryCartService.getCart(context,Provider.of<CommonProvider>(context,listen: false).getLoginId()),
     builder: (context,snapshot)
     {
       if(snapshot.hasData)
@@ -251,10 +263,10 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                   colorArrows: theme.colorDefaultText,
                   title1: "title", title1Style: theme.text16bold,
                   title2Style: theme.text18bold,
-                  price: snapshot.data[index].food_quantity, priceTitleStyle: theme.text20boldPrimary,
+                  price: "snapshot.data[index].food_quantity", priceTitleStyle: theme.text20boldPrimary,
                   image: 'assets/pr2.jpg',
                   incDec: _onItemChangeCount,
-                  heroTag: snapshot.data[index].id,
+                  heroTag: "snapshot.data[index].id",
                   count: 3);
 
         });

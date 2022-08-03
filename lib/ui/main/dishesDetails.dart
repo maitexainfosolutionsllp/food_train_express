@@ -74,7 +74,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
       "quantity": _count.toString()
     };
 
-    var res = await Api().authData(data, '/pantry/order-food');
+    var res = await Api().authData(data, '/pantry-food/order-food');
     var body = json.decode(res.body);
 
     if(body['success']==true)

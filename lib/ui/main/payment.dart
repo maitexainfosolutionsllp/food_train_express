@@ -161,7 +161,7 @@ class _PaymentScreenState extends State<PaymentScreen>
         Container(
           margin: EdgeInsets.only(left: 30, right: 30),
           child: IButtonBorder(text: strings.get(115),
-            color: theme.colorPrimary, pressButton: _pressPayButton,             // Pay
+            color: theme.colorPrimary, pressButton: (){},             // Pay
           ),
         ),
     );
