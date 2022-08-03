@@ -537,7 +537,7 @@ class _DishesDetailsScreenState extends State<DishesDetailsScreen> with SingleTi
 
   void getFoodDetails(String foodId) async
   {
-    final url = 'http://192.168.1.37:8000/shop/view-pantry-food-details/'+foodId;
+    final url = 'http://192.168.1.34:8000/shop/view-pantry-food-details/'+foodId;
     var response = await http.get(Uri.parse(url));
     var body = json.decode(response.body);
 
