@@ -103,11 +103,11 @@ class _AccountScreenState extends State<AccountScreen> {
                       color: theme.colorBackgroundGray,
                       child: _userInfo(),
                     ),
-                    SizedBox(height: 30),
-                    Container(
-                        margin: EdgeInsets.only(left: 30, right: 30),
-                        child: _logout()
-                    ),
+                    // SizedBox(height: 30),
+                    // Container(
+                    //     margin: EdgeInsets.only(left: 30, right: 30),
+                    //     child: _logout()
+                    // ),
                     SizedBox(height: 30),
                     // Container(
                     //     margin: EdgeInsets.only(left: 30, right: 30),

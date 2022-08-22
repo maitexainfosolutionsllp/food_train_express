@@ -1,10 +1,14 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fooddelivery/api.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/widget/iCard27.dart';
 import 'package:fooddelivery/widget/ibutton.dart';
 import 'package:fooddelivery/widget/iinputField2.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DeliveryScreen extends StatefulWidget {
   @override
@@ -14,13 +18,50 @@ class DeliveryScreen extends StatefulWidget {
 class _DeliveryScreenState extends State<DeliveryScreen>
     with SingleTickerProviderStateMixin {
 
+  String loginId;
+
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   //
   // User press "Continue" button
   //
-  _pressContinueButton(){
+  _pressContinueButton() async
+  {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     if (stage == 3)
       Navigator.pop(context);
+
+    //   loginId = (prefs.getString('loginId') ?? '');
+    //   //loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
+    //
+    //
+    // // var data = {
+    // //   "login": loginId,
+    // // };
+    //
+    // var res = await Api().getData('/shop/place-pantry-order/'+loginId);
+    // var body = json.decode(res.body);
+    //
+    // if(body['success']==true)
+    // {
+    //   Fluttertoast.showToast(
+    //     msg: body['message'].toString(),
+    //     backgroundColor: Colors.grey,
+    //   );
+    //
+    //   // route.push(context, "/login");
+    //   Navigator.pop(context);
+    //
+    // }
+    // else
+    // {
+    //   Fluttertoast.showToast(
+    //     msg: body['message'].toString(),
+    //     backgroundColor: Colors.grey,
+    //   );
+    //
+    // }
+
+
     if (stage == 2)
       stage = 3;
 

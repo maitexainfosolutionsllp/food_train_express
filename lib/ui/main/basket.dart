@@ -69,7 +69,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
   @override
   Widget build(BuildContext context) {
 
-    loginId = Provider.of<CommonProvider>(context,listen: false).getLoginId().toString();
+//loginId = Provider.of<CommonProvider>(context,listen: false).getLoginId().toString();
 
 
     windowWidth = MediaQuery.of(context).size.width;
@@ -249,7 +249,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
     print(loginId);
 
     return FutureBuilder<List<PantryCart>>(
-    future: _pantryCartService.getCart(context,Provider.of<CommonProvider>(context,listen: false).getLoginId()),
+    future: _pantryCartService.getCart(context,""),
     builder: (context,snapshot)
     {
       if(snapshot.hasData)

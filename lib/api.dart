@@ -19,7 +19,7 @@ class Api{
   getData(apiUrl) async {
     var fullUrl = _url + apiUrl;
     // await _getToken();
-    return await http.post(
+    return await http.get(
         Uri.parse(fullUrl),
         // headers: _setHeaders()
     );
