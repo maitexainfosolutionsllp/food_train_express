@@ -506,7 +506,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> with 
    void getShopDetail(String shopId) async {
 
 
-    final url = 'http://192.168.1.37:8000/shop/view-single-shop/'+shopId;
+    final url = 'http://192.168.1.48:8000/shop/view-single-shop/'+shopId;
     var response = await http.get(Uri.parse(url));
     var body = json.decode(response.body);
 

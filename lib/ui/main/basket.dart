@@ -56,8 +56,8 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
 
   @override
   void initState() {
-    super.initState();
-    // loadUserData();
+
+    loadUserData();
   }
 
   @override
@@ -234,22 +234,22 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
     );
   }
   
-  // void loadUserData() async
-  // {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     loginId = (prefs.getString('loginId'));
-  //     this.loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
-  //   });
-  //
-  // }
+  loadUserData() async
+  {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      loginId = (prefs.getString('loginId'));
+      loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
+    });
+
+  }
 
   listCart()
   {
-    print(loginId);
+    print("LOGIN ID:"+loginId);
 
     return FutureBuilder<List<PantryCart>>(
-    future: _pantryCartService.getCart(context,""),
+    future: _pantryCartService.getCart(context,loginId),
     builder: (context,snapshot)
     {
       if(snapshot.hasData)
@@ -261,7 +261,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
                   width: windowWidth,
                   height: 100,
                   colorArrows: theme.colorDefaultText,
-                  title1: "title", title1Style: theme.text16bold,
+                  title1: snapshot.data[index].pantry_food_id, title1Style: theme.text16bold,
                   title2Style: theme.text18bold,
                   price: "snapshot.data[index].food_quantity", priceTitleStyle: theme.text20boldPrimary,
                   image: 'assets/pr2.jpg',

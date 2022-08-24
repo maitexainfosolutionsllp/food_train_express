@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/model/map.dart';
+import 'package:fooddelivery/model/shop.dart';
 import 'package:fooddelivery/model/topRestourants.dart';
+import 'package:fooddelivery/service/shopService.dart';
 import 'package:fooddelivery/ui/main/home.dart';
 import 'package:fooddelivery/widget/iboxCircle.dart';
 import 'package:fooddelivery/widget/icard10.dart';
+import 'package:fooddelivery/widget/row_builder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
@@ -20,6 +23,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
 
+  ShopService _shopservice = new ShopService();
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   //
@@ -77,6 +81,8 @@ class _MapScreenState extends State<MapScreen> {
       else
         _controller.setMapStyle(null);
 
+    var height = windowWidth*0.6*0.7;
+
     return Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+40),
         child: Stack(children: <Widget>[
@@ -102,7 +108,33 @@ class _MapScreenState extends State<MapScreen> {
             alignment: Alignment.bottomCenter,
             child: Container(
                 margin: EdgeInsets.only(bottom: 70),
-                child: _horizontalTopRestaurants()
+                child: Container(
+                  height: height+20,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+
+                      shopList()
+
+                      // ICard10(
+                      //   color: theme.colorBackground,
+                      //   text: "item.text",
+                      //   text2: "item.text2",
+                      //   width: windowWidth * 0.6,
+                      //   height: height,
+                      //   image: "item.image",
+                      //   stars: 5,
+                      //   colorStars: theme.colorPrimary,
+                      //   id: "item.id",
+                      //   starsCount: 5,
+                      //   title: theme.text18boldPrimary,
+                      //   body: theme.text16,
+                      //   callback: _onTopRestaurantClick,
+                      //
+                      // )
+                    ] ,
+                  ),
+                )
             ),
           )
 
@@ -280,5 +312,42 @@ class _MapScreenState extends State<MapScreen> {
 
           );
         }
+  }
+
+  shopList()
+  {
+    var height = windowWidth*0.6*0.7;
+
+    return FutureBuilder<List<ShopModel>>(
+        future:_shopservice.getShops(context),
+        builder: (context, snapshot)
+        {
+          if(snapshot.hasData)
+          {
+            return RowBuilder(itemCount: snapshot.data.length, itemBuilder: (context, index)
+            {
+              return ICard10(
+                color: theme.colorBackground,
+                text: snapshot.data[index].shop_name,
+                text2: snapshot.data[index].station_name,
+                width: windowWidth * 0.6,
+                height: windowWidth*0.6*0.7,
+                image: "assets/top1.jpg",
+                id: snapshot.data[index].id,
+                title: theme.text18boldPrimary,
+                body: theme.text16,
+                callback: _onTopRestaurantClick,
+              );
+
+            });
+
+          }
+          else
+          {
+            return CircularProgressIndicator();
+          }
+        }
+    );
+
   }
 }

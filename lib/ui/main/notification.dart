@@ -38,18 +38,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
   double windowWidth = 0.0;
   double windowHeight = 0.0;
   List<Notifications> _this = [
-    Notifications(id: "6", date: "2020-08-09 12:22", title: "New Order", text: "You have an order assigned for you",
+    Notifications(id: "6", date: "2022-08-09 12:22", title: "New Food", text: "You have a new notification",
         image: "https://www.valeraletun.ru/codecanyon/push.jpg"),
-    Notifications(id: "5", date: "2020-08-09 14:24", title: "New Order", text: "You have an order assigned for you",
+    Notifications(id: "5", date: "2022-08-09 14:24", title: "New Food", text: "You have a new notification",
         image: "https://www.valeraletun.ru/adminbsb/public/images/1599664761055top3.jpg"),
-    Notifications(id: "4", date: "2020-08-09 16:01", title: "New Order", text: "You have an order assigned for you",
-        image: "https://www.valeraletun.ru/adminbsb/public/images/16010335599951-AvocadoVeggie-v2.png"),
-    Notifications(id: "3", date: "2020-08-09 12:22", title: "New Order", text: "You have an order assigned for you",
-        image: "https://www.valeraletun.ru/adminbsb/public/images/1599677404919pr4.jpg"),
-    Notifications(id: "2", date: "2020-08-09 12:22", title: "New Order", text: "You have an order assigned for you",
-        image: "https://www.valeraletun.ru/codecanyon/push.jpg"),
-    Notifications(id: "1", date: "2020-08-09 17:04", title: "Order Completed!", text: "Congratulation! You payouts has been approved!",
-        image: "https://www.valeraletun.ru/codecanyon/push.jpg"),
   ];
 
   @override

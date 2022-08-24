@@ -277,7 +277,7 @@ class _AccountScreenState extends State<AccountScreen> {
     //       backgroundColor: Colors.grey,
     //     );
 
-    final url = 'http://192.168.1.34:8000/user/view-user-profile/'+loginId;
+    final url = 'http://192.168.1.48:8000/user/view-user-profile/'+loginId;
     var response = await http.get(Uri.parse(url));
     var body = json.decode(response.body);
 

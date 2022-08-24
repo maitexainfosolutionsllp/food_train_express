@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fooddelivery/main.dart';
 import 'package:fooddelivery/widget/ibackground3.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -10,13 +11,33 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+  String loginId;
+
   ////////////////////////////////////////////////////////////////
   //
   //
   //
-  _startNextScreen(){
+  _startNextScreen() async
+  {
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(()
+    {
+      loginId = (prefs.getString('loginId') ?? '');
+      loginId = loginId.replaceAll(new RegExp(r'[^\w\s]+'),'');
+    });
+
     route.setDuration(1);
-    route.pushToStart(context, "/login");
+
+    if(loginId!="")
+    {
+      route.pushToStart(context, "/main");
+    }
+    else
+    {
+      route.pushToStart(context, "/login");
+    }
+    //route.pushToStart(context, "/login");
   }
   //
   //

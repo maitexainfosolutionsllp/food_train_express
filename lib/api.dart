@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 
 
 class Api{
-  var base_url = "http://192.168.1.34:8000";
-  final String _url = "http://192.168.1.34:8000";
+  var base_url = "http://192.168.1.48:8000";
+  final String _url = "http://192.168.1.48:8000";
   //if you are using android studio emulator, change localhost to 10.0.2.2
   var token;
 

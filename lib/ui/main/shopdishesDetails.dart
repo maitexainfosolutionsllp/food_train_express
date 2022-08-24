@@ -539,12 +539,12 @@ class _ShopDishesDetailsScreenState extends State<ShopDishesDetailsScreen> with 
 
   void getFoodDetails(String foodId) async
   {
-    final url = 'http://192.168.1.34:8000/shop/view-pantry-food-details/'+foodId;
+    final url = 'http://192.168.1.48:8000/shop/view-shop-food-details/'+foodId;
     var response = await http.get(Uri.parse(url));
     var body = json.decode(response.body);
 
     setState(() {
-      foodName     = body['data'][0]['pantry_food_name'];
+      foodName     = body['data'][0]['shop_food_name'];
       foodPrice    = body['data'][0]['price'];
       foodQuantity = body['data'][0]['quantity'];
     });

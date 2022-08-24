@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CommonProvider with ChangeNotifier
 {
   
-  String base_url = "http://192.168.1.34:8000";
+  String base_url = "http://192.168.1.48:8000";
   String loginId;
 
   CommonProvider(){
