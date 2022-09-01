@@ -517,8 +517,8 @@ class _HomeScreenState extends State<HomeScreen> {
               body: theme.text16,
               callback: _onTopRestaurantClick,
             );
-
-            });
+            }
+            );
 
           }
           else

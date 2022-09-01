@@ -259,7 +259,7 @@ class _BasketScreenState extends State<BasketScreen> with TickerProviderStateMix
           return ICard9a(
                   color: theme.colorBackgroundDialog,
                   width: windowWidth,
-                  height: 100,
+                  height: 150,
                   colorArrows: theme.colorDefaultText,
                   title1: snapshot.data[index].pantry_food_id, title1Style: theme.text16bold,
                   title2Style: theme.text18bold,
